@@ -17,15 +17,98 @@ public class FinanceController {
         this.storage = storage;
     }
 
-    public void addRecord(Transaction t) {}
+    public void addRecord(Transaction t) {
+        if (t == null)
+        {
+            throw new IllegalArgumentException("Transaction cannot be null");
+        }
 
-    public void deleteRecord(Transaction t) {}
+        if (!t.validateAmount())
+        {
+            throw new IllegalArgumentException("Invalid transaction amount");
+        }
+
+        currentUser.addTransaction(t);
+
+        if (t instanceof Expense && !validateBalance()) {
+            currentUser.removeTransaction(t.getTransactionId());
+            throw new IllegalArgumentException("Insufficient balance");
+        }
+
+        storage.saveData(currentUser);
+        currentUser.addTransaction(t);
+        storage.saveData(currentUser);
+    }
+
+    public void deleteRecord(int  transactionID) {
+        if (transactionID <= 0)
+        {
+            throw new IllegalArgumentException("Invalid transaction ID");
+        }
+        if (!currentUser.hasTransaction(transactionID))
+        {
+            throw new IllegalArgumentException("Transaction ID does not exist");
+        }   
+
+        currentUser.removeTransaction(transactionID);
+        storage.saveData(currentUser);
+
+    }
 
     public Report getMonthlySummary(int month) {
-        return null;
+    
+        if (month < 1 || month > 12)   
+        {
+            throw new IllegalArgumentException("Invalid month");
+        }
+        if (currentUser.getTransactions().isEmpty())
+        {
+            throw new IllegalStateException("No transactions available for summary");
+        }
+
+        double totalIncome = 0;
+        double totalExpense = 0;
+
+        
+        for(Transaction t : currentUser.getTransactions())
+        {
+            if (t.getDate().getMonthValue() == month)
+            {
+                if (t instanceof Income)
+                {
+                    totalIncome += t.getAmount();
+                }
+            
+            else if (t instanceof Expense)
+                {
+                    totalExpense += t.getAmount();
+                }
+            }
+        }
+
+        double netBalance = totalIncome - totalExpense;
+        Report report = new Report(month, totalIncome, totalExpense, netBalance);
+        return report;
     }
 
     public boolean validateBalance() {
-        return false;
+            double totalIncome = 0;
+            double totalExpense = 0;
+            for(Transaction t : currentUser.getTransactions())
+            {
+                if (t instanceof Income)
+                {
+                    totalIncome += t.getAmount();
+                }
+            
+            else if (t instanceof Expense)
+                {
+                    totalExpense += t.getAmount();
+                }
+            }
+           
+        double netBalance = totalIncome - totalExpense;
+
+        return netBalance >= 0;
     }
 }
