@@ -1,4 +1,4 @@
-package UserManagement;
+package src.UserManagement;
 
 public interface IUser {
     public boolean register(String name, String email, String password);

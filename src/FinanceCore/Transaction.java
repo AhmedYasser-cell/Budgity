@@ -1,4 +1,4 @@
-package FinanceCore;
+package src.FinanceCore;
 
 //import java.sql.Date;
 import java.time.LocalDate;
@@ -9,7 +9,6 @@ public abstract class Transaction {
     private String category;
     private LocalDate date;
 
-  
     public int getTransactionId() {
         return transactionId;
     }

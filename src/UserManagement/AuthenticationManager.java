@@ -1,6 +1,6 @@
-package UserManagement;
+package src.UserManagement;
 
-import Infrastructure.DataStorage;
+import src.Infrastructure.DataStorage;
 
 public class AuthenticationManager {
     public static boolean verifyCredentials(String email, String password) {

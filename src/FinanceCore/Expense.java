@@ -1,4 +1,4 @@
-package FinanceCore;
+package src.FinanceCore;
 
 //import java.sql.Date;
 import java.time.LocalDate;

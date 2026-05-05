@@ -1,8 +1,9 @@
-package Infrastructure;
+package src.Infrastructure;
 
-import UserManagement.User;
+import src.UserManagement.User;
 
 public interface IPersistence {
     boolean saveData(User user);
+
     User loadData(String userId);
 }

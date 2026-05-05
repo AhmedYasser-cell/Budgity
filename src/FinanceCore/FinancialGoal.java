@@ -1,4 +1,4 @@
-package FinanceCore;
+package src.FinanceCore;
 
 public class FinancialGoal {
     private int goalId;

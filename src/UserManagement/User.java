@@ -1,7 +1,7 @@
-package UserManagement;
+package src.UserManagement;
 
-import Infrastructure.DataStorage;
-import FinanceCore.Transaction;
+import src.Infrastructure.DataStorage;
+import src.FinanceCore.Transaction;
 import java.util.List;
 import java.util.ArrayList;
 

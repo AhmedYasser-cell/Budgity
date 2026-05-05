@@ -1,6 +1,6 @@
-package Infrastructure;
+package src.Infrastructure;
 
-import UserManagement.User;
+import src.UserManagement.User;
 import java.util.HashMap;
 
 public class DataStorage implements IPersistence {
@@ -8,7 +8,7 @@ public class DataStorage implements IPersistence {
     // Singleton instance
     private static DataStorage instance;
 
-    //Temp in-memory storage for users
+    // Temp in-memory storage for users
     private HashMap<String, User> users;
 
     private DataStorage() {

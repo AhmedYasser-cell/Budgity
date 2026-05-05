@@ -1,11 +1,10 @@
-package Infrastructure;
+package src.Infrastructure;
 
-import UserManagement.User;
-import FinanceCore.Transaction;
-import FinanceCore.Expense;
-import FinanceCore.Report;
-import FinanceCore.Income;
-
+import src.UserManagement.User;
+import src.FinanceCore.Transaction;
+import src.FinanceCore.Expense;
+import src.FinanceCore.Report;
+import src.FinanceCore.Income;
 
 public class FinanceController {
 
@@ -18,13 +17,11 @@ public class FinanceController {
     }
 
     public void addRecord(Transaction t) {
-        if (t == null)
-        {
+        if (t == null) {
             throw new IllegalArgumentException("Transaction cannot be null");
         }
 
-        if (!t.validateAmount())
-        {
+        if (!t.validateAmount()) {
             throw new IllegalArgumentException("Invalid transaction amount");
         }
 
@@ -38,15 +35,13 @@ public class FinanceController {
         storage.saveData(currentUser);
     }
 
-    public void deleteRecord(int  transactionID) {
-        if (transactionID <= 0)
-        {
+    public void deleteRecord(int transactionID) {
+        if (transactionID <= 0) {
             throw new IllegalArgumentException("Invalid transaction ID");
         }
-        if (!currentUser.hasTransaction(transactionID))
-        {
+        if (!currentUser.hasTransaction(transactionID)) {
             throw new IllegalArgumentException("Transaction ID does not exist");
-        }   
+        }
 
         currentUser.removeTransaction(transactionID);
         storage.saveData(currentUser);
@@ -54,31 +49,24 @@ public class FinanceController {
     }
 
     public Report getMonthlySummary(int month) {
-    
-        if (month < 1 || month > 12)   
-        {
+
+        if (month < 1 || month > 12) {
             throw new IllegalArgumentException("Invalid month");
         }
-        if (currentUser.getTransactions().isEmpty())
-        {
+        if (currentUser.getTransactions().isEmpty()) {
             throw new IllegalStateException("No transactions available for summary");
         }
 
         double totalIncome = 0;
         double totalExpense = 0;
 
-        
-        for(Transaction t : currentUser.getTransactions())
-        {
-            if (t.getDate().getMonthValue() == month)
-            {
-                if (t instanceof Income)
-                {
+        for (Transaction t : currentUser.getTransactions()) {
+            if (t.getDate().getMonthValue() == month) {
+                if (t instanceof Income) {
                     totalIncome += t.getAmount();
                 }
-            
-            else if (t instanceof Expense)
-                {
+
+                else if (t instanceof Expense) {
                     totalExpense += t.getAmount();
                 }
             }
@@ -90,21 +78,18 @@ public class FinanceController {
     }
 
     public boolean validateBalance() {
-            double totalIncome = 0;
-            double totalExpense = 0;
-            for(Transaction t : currentUser.getTransactions())
-            {
-                if (t instanceof Income)
-                {
-                    totalIncome += t.getAmount();
-                }
-            
-            else if (t instanceof Expense)
-                {
-                    totalExpense += t.getAmount();
-                }
+        double totalIncome = 0;
+        double totalExpense = 0;
+        for (Transaction t : currentUser.getTransactions()) {
+            if (t instanceof Income) {
+                totalIncome += t.getAmount();
             }
-           
+
+            else if (t instanceof Expense) {
+                totalExpense += t.getAmount();
+            }
+        }
+
         double netBalance = totalIncome - totalExpense;
 
         return netBalance >= 0;

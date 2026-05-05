@@ -1,4 +1,4 @@
-package FinanceCore;
+package src.FinanceCore;
 
 public class Budget {
     private int budgetId;

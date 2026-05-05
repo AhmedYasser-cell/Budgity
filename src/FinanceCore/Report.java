@@ -1,4 +1,4 @@
-package FinanceCore;
+package src.FinanceCore;
 
 public class Report {
 
@@ -32,7 +32,7 @@ public class Report {
         return netBalance;
     }
 
-    // Setters 
+    // Setters
     public void setMonth(int month) {
         this.month = month;
     }
