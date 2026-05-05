@@ -1,23 +1,22 @@
 package src;
 
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
+import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 
 public class Main extends Application {
 
     @Override
-    public void start(Stage stage) {
+    public void start(Stage stage) throws Exception {
 
-        Label label = new Label("JavaFX is working 🚀");
+        Parent root = FXMLLoader.load(getClass().getResource("test.fxml"));
 
-        StackPane root = new StackPane(label);
+        Scene scene = new Scene(root);
 
-        Scene scene = new Scene(root, 400, 300);
-
-        stage.setTitle("Test App");
         stage.setScene(scene);
         stage.show();
     }
