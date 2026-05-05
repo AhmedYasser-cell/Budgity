@@ -45,11 +45,11 @@ public class Budget {
         this.alertThreshold = alertThreshold;
     }
 
-    double calculateRemaining() {
+    public double calculateRemaining() {
         return getLimitAmount() - getSpentAmount();
     }
 
-    String checkLimitStatus() {
+    public String checkLimitStatus() {
         double remaining = calculateRemaining();
         if (remaining <= 0) {
             return "Budget exceeded";

@@ -19,7 +19,7 @@ public class Expense extends Transaction {
         this.paymentMethod = paymentMethod;
     }
 
-    void addExpense(double amount, String method) {
+    public void addExpense(double amount, String method) {
         if (validateAmount()) {
             if (method.equalsIgnoreCase("Credit Card") || method.equalsIgnoreCase("Debit Card")
                     || method.equalsIgnoreCase("Cash")) {

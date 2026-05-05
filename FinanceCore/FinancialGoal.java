@@ -46,7 +46,7 @@ public class FinancialGoal {
         this.currentAmount = currentAmount;
     }
 
-    void addContribution(double amount) {
+    public void addContribution(double amount) {
         if (amount > 0) {
             setCurrentAmount(getCurrentAmount() + amount);
         } else {
@@ -54,7 +54,7 @@ public class FinancialGoal {
         }
     }
 
-    double getPercentageAchieved() {
+    public double getPercentage() {
         if (getTargetAmount() > 0) {
             return (getCurrentAmount() / getTargetAmount()) * 100;
         } else {

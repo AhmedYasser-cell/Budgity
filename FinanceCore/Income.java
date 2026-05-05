@@ -20,7 +20,7 @@ public class Income extends Transaction {
         this.source = source;
     }
 
-    void addIncome() {
+    public void addIncome(double amount, String source) {
         if (validateAmount()) {
             // Logic to add income to the system
         } else {
