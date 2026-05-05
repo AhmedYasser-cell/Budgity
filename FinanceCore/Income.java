@@ -1,6 +1,8 @@
 package FinanceCore;
 
-import java.sql.Date;
+//import java.sql.Date;
+import java.time.LocalDate;
+
 
 public class Income extends Transaction {
     private String source;
@@ -13,7 +15,7 @@ public class Income extends Transaction {
         this.source = source;
     }
 
-    public Income(int transactionId, double amount, Date date, String category, String source) {
+    public Income(int transactionId, double amount, LocalDate date, String category, String source) {
         super(transactionId, amount, date, category);
         this.source = source;
     }

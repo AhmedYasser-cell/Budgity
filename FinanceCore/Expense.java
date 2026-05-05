@@ -1,6 +1,7 @@
 package FinanceCore;
 
-import java.sql.Date;
+//import java.sql.Date;
+import java.time.LocalDate;
 
 public class Expense extends Transaction {
     private String paymentMethod;
@@ -13,7 +14,7 @@ public class Expense extends Transaction {
         this.paymentMethod = paymentMethod;
     }
 
-    public Expense(int transactionId, double amount, Date date, String category, String paymentMethod) {
+    public Expense(int transactionId, double amount, LocalDate date, String category, String paymentMethod) {
         super(transactionId, amount, date, category);
         this.paymentMethod = paymentMethod;
     }

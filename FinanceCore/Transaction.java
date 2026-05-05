@@ -1,13 +1,15 @@
 package FinanceCore;
 
-import java.sql.Date;
+//import java.sql.Date;
+import java.time.LocalDate;
 
 public abstract class Transaction {
     private int transactionId;
     private double amount;
-    private Date date;
     private String category;
+    private LocalDate date;
 
+  
     public int getTransactionId() {
         return transactionId;
     }
@@ -24,11 +26,11 @@ public abstract class Transaction {
         this.amount = amount;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
@@ -40,7 +42,7 @@ public abstract class Transaction {
         this.category = category;
     }
 
-    public Transaction(int transactionId, double amount, Date date, String category) {
+    public Transaction(int transactionId, double amount, LocalDate date, String category) {
         this.transactionId = transactionId;
         this.amount = amount;
         this.date = date;

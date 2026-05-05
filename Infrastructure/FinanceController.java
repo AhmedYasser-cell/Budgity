@@ -9,8 +9,8 @@ import FinanceCore.Income;
 
 public class FinanceController {
 
-    private User currentUser;
-    private IPersistence storage;
+    private final User currentUser;
+    private final IPersistence storage;
 
     public FinanceController(User user, IPersistence storage) {
         this.currentUser = user;
@@ -35,8 +35,6 @@ public class FinanceController {
             throw new IllegalArgumentException("Insufficient balance");
         }
 
-        storage.saveData(currentUser);
-        currentUser.addTransaction(t);
         storage.saveData(currentUser);
     }
 
