@@ -107,8 +107,12 @@ public class User implements IUser {
     }
 
     public void updateProfile(String name, String email) {
-        this.username = name;
-        this.email = email;
+        if (name != null) {
+            this.username = name;
+        }
+        if (email != null) {
+            this.email = email;
+        }
         src.Infrastructure.DatabaseManager.getInstance().saveData(this);
     }
 }

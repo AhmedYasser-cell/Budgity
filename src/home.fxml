@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.homeController">
    <children>
       <SplitPane dividerPositions="0.16080402010050251" orientation="VERTICAL" prefHeight="400.0" prefWidth="600.0">
         <items>
@@ -26,7 +26,7 @@
                            </image>
                         </ImageView>
                         <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Main" />
-                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Profile">
+                        <Button fx:id="profileButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#goToProfile" text="Profile">
                            <opaqueInsets>
                               <Insets right="10.0" top="10.0" />
                            </opaqueInsets>

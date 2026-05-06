@@ -21,6 +21,16 @@ public class homeController implements Initializable {
     @FXML
     private Button Logout;
 
+    @FXML
+    private Button profileButton;
+
+    @FXML
+    private void goToProfile() throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("profile.fxml"));
+        Stage stage = (Stage) profileButton.getScene().getWindow();
+        stage.setScene(new Scene(root));
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
     }

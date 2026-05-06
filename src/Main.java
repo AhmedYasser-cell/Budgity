@@ -12,6 +12,9 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
+        
+        // Ensure database tables exist before doing anything else
+        src.Infrastructure.DatabaseManager.getInstance().initializeDatabase();
 
         Parent root = FXMLLoader.load(getClass().getResource("test.fxml"));
 
