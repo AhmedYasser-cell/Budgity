@@ -1,7 +1,8 @@
 package src.UserManagement;
 
-import src.Infrastructure.DataStorage;
 import src.FinanceCore.Transaction;
+import src.FinanceCore.Budget;
+import src.FinanceCore.FinancialGoal;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -11,6 +12,8 @@ public class User implements IUser {
     private String password;
     private String email;
     private List<Transaction> transactions;
+    private List<Budget> budgets;
+    private List<FinancialGoal> goals;
 
     public User(int userId, String username, String password, String email) {
         this.userId = userId;
@@ -18,6 +21,8 @@ public class User implements IUser {
         this.password = password;
         this.email = email;
         this.transactions = new ArrayList<>();
+        this.budgets = new ArrayList<>();
+        this.goals = new ArrayList<>();
     }
 
     public int getUserId() {
@@ -60,6 +65,22 @@ public class User implements IUser {
         this.transactions.add(transaction);
     }
 
+    public List<Budget> getBudgets() {
+        return budgets;
+    }
+
+    public void addBudget(Budget budget) {
+        this.budgets.add(budget);
+    }
+
+    public List<FinancialGoal> getGoals() {
+        return goals;
+    }
+
+    public void addGoal(FinancialGoal goal) {
+        this.goals.add(goal);
+    }
+
     public boolean hasTransaction(int transactionId) {
         for (Transaction t : transactions) {
             if (t.getTransactionId() == transactionId) {
@@ -77,7 +98,7 @@ public class User implements IUser {
         this.username = name;
         this.email = email;
         this.password = pass;
-        return DataStorage.getInstance().saveData(this);
+        return src.Infrastructure.DatabaseManager.getInstance().saveData(this);
     }
 
     @Override
@@ -88,6 +109,6 @@ public class User implements IUser {
     public void updateProfile(String name, String email) {
         this.username = name;
         this.email = email;
-        DataStorage.getInstance().saveData(this);
+        src.Infrastructure.DatabaseManager.getInstance().saveData(this);
     }
 }
