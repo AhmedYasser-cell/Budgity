@@ -6,7 +6,7 @@ import java.time.LocalDate;
 public abstract class Transaction {
     private int transactionId;
     private double amount;
-    private String category;
+    private Category category;
     private LocalDate date;
 
     public int getTransactionId() {
@@ -33,15 +33,15 @@ public abstract class Transaction {
         this.date = date;
     }
 
-    public String getCategory() {
+    public Category getCategory() {
         return category;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(Category category) {
         this.category = category;
     }
 
-    public Transaction(int transactionId, double amount, LocalDate date, String category) {
+    public Transaction(int transactionId, double amount, LocalDate date, Category category) {
         this.transactionId = transactionId;
         this.amount = amount;
         this.date = date;

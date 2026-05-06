@@ -14,7 +14,7 @@ public class Expense extends Transaction {
         this.paymentMethod = paymentMethod;
     }
 
-    public Expense(int transactionId, double amount, LocalDate date, String category, String paymentMethod) {
+    public Expense(int transactionId, double amount, LocalDate date, Category category, String paymentMethod) {
         super(transactionId, amount, date, category);
         this.paymentMethod = paymentMethod;
     }
