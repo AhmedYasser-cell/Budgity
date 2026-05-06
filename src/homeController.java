@@ -25,6 +25,16 @@ public class homeController implements Initializable {
     private Button profileButton;
 
     @FXML
+    private Button transactionButton;
+
+    @FXML
+    private void goToTransaction() throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("transaction.fxml"));
+        Stage stage = (Stage) transactionButton.getScene().getWindow();
+        stage.setScene(new Scene(root));
+    }
+
+    @FXML
     private void goToProfile() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("profile.fxml"));
         Stage stage = (Stage) profileButton.getScene().getWindow();
