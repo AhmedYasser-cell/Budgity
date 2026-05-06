@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.Pane?>
 
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.homeController">
    <children>
       <HBox alignment="CENTER_LEFT" layoutX="14.0" layoutY="7.0" prefHeight="50.0" prefWidth="582.0" spacing="50.0">
          <children>
@@ -19,7 +19,7 @@
                </image>
             </ImageView>
             <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Main" />
-            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Profile">
+            <Button fx:id="profileButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#goToProfile" text="Profile">
                <opaqueInsets>
                   <Insets right="10.0" top="10.0" />
                </opaqueInsets>

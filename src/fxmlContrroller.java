@@ -16,8 +16,12 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import src.UserManagement.*;
+import src.Infrastructure.DatabaseManager;
+
 public class fxmlContrroller implements Initializable {
 
+    static User currentUser;
     @FXML
     private TextField UsernameField;
     @FXML
@@ -27,13 +31,14 @@ public class fxmlContrroller implements Initializable {
 
     @FXML
     private void handleLogin() {
-        String username = UsernameField.getText();
+        String email = UsernameField.getText();
         String password = PasswordField.getText();
-        User user = new User(1, username, password, "ee");
-        boolean success = user.login(username, password);
-        if (true) {
-            // label.setText("Login successful!");
-            // Navigate to the next scene or perform other actions
+        User user = new User(1, "ee", password, email);
+        boolean success = user.login(email, password);
+        if (success) {
+            // Fetch the full user data from the database so we have the real username
+            currentUser = DatabaseManager.getInstance().loadData(email);
+            
             try {
                 Parent root = FXMLLoader.load(getClass().getResource("home.fxml"));
                 Stage stage = (Stage) loginButton.getScene().getWindow();
