@@ -36,6 +36,7 @@ public class homeController implements Initializable {
 
     @FXML
     private Button profileButton;
+
     @FXML
     private Button expenseButton;
     @FXML

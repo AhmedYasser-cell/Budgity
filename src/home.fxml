@@ -32,7 +32,7 @@
                               <Insets right="10.0" top="10.0" />
                            </opaqueInsets>
                         </Button>
-                        <Button alignment="CENTER" contentDisplay="CENTER" layoutX="312.0" layoutY="43.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="85.0" text="Transcation" />
+                        <Button fx:id="transactionButton" alignment="CENTER" contentDisplay="CENTER" layoutX="312.0" layoutY="43.0" mnemonicParsing="false" onAction="#goToTransaction" prefHeight="25.0" prefWidth="85.0" text="Transcation" />
                         <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="65.0" text="Goal" />
                         <Slider blockIncrement="1.0" max="1.0" prefHeight="14.0" prefWidth="41.0" />
                      </children>
@@ -49,12 +49,12 @@
                                  <children>
                                     <HBox alignment="CENTER" prefHeight="70.0" prefWidth="229.0" style="-fx-background-color: red;">
                                        <children>
-                                          <Button fx:id="expenseButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="65.0" text="Expenses" />
+                                          <Button fx:id="expenseButton" mnemonicParsing="false" onAction="#handleExpenses" prefHeight="25.0" prefWidth="65.0" text="Expenses" />
                                        </children>
                                     </HBox>
                                     <HBox alignment="CENTER" layoutX="10.0" layoutY="20.0" prefHeight="70.0" prefWidth="229.0" style="-fx-background-color: red;">
                                        <children>
-                                          <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="65.0" text="Income" />
+                                          <Button fx:id="incomeButton" mnemonicParsing="false" onAction="#handleIncome" prefHeight="25.0" prefWidth="65.0" text="Income" />
                                        </children>
                                     </HBox>
                                     <HBox alignment="CENTER" layoutX="10.0" layoutY="180.0" prefHeight="70.0" prefWidth="229.0" style="-fx-background-color: red;">
