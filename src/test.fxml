@@ -42,6 +42,8 @@
 <?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -87,7 +89,7 @@
         </Menu>
       </menus>
     </MenuBar>
-      <SplitPane dividerPositions="0.15013404825737264" orientation="VERTICAL" prefHeight="377.0" prefWidth="640.0">
+      <SplitPane dividerPositions="0.15013404825737264" orientation="VERTICAL" prefHeight="410.0" prefWidth="640.0">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="70.0" prefWidth="638.0">
                <children>
@@ -96,8 +98,9 @@
                         <Font name="TheSans-Bold" size="28.0" />
                      </font>
                   </Label>
-               </children></AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="247.0" prefWidth="638.0">
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="343.0" prefWidth="638.0">
                <children>
                   <PasswordField fx:id="PasswordField" layoutX="234.0" layoutY="145.0" promptText="Password" />
                   <Label alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" layoutX="207.0" layoutY="14.0" prefHeight="72.0" prefWidth="225.0" text="Login Page" textAlignment="CENTER">
@@ -105,9 +108,19 @@
                         <Font name="TheSans-Bold" size="37.0" />
                      </font>
                   </Label>
-                  <Button layoutX="256.0" layoutY="179.0" mnemonicParsing="false" text="Login" />
+                  <Button fx:id="loginButton" layoutX="256.0" layoutY="179.0" mnemonicParsing="false" onAction="#handleLogin" text="Login" />
                   <TextField fx:id="UsernameField" layoutX="211.0" layoutY="108.0" prefHeight="26.0" prefWidth="194.0" promptText="User" />
                   <Hyperlink layoutX="320.0" layoutY="180.0" text="Sign up?" />
+                  <ImageView fitHeight="27.0" fitWidth="26.0" layoutX="172.0" layoutY="105.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Assets/user.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="27.0" fitWidth="25.0" layoutX="198.0" layoutY="145.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Assets/lock.png" />
+                     </image>
+                  </ImageView>
                </children>
             </AnchorPane>
         </items>
