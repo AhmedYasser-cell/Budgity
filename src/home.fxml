@@ -47,22 +47,22 @@
                                  <children>
                                     <HBox alignment="CENTER" prefHeight="70.0" prefWidth="229.0" style="-fx-background-color: red;">
                                        <children>
-                                          <Button mnemonicParsing="false" text="Button" />
+                                          <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="65.0" text="Expenses" />
                                        </children>
                                     </HBox>
                                     <HBox alignment="CENTER" layoutX="10.0" layoutY="20.0" prefHeight="70.0" prefWidth="229.0" style="-fx-background-color: red;">
                                        <children>
-                                          <Button mnemonicParsing="false" text="Button" />
+                                          <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="65.0" text="Income" />
                                        </children>
                                     </HBox>
                                     <HBox alignment="CENTER" layoutX="10.0" layoutY="100.0" prefHeight="70.0" prefWidth="229.0" style="-fx-background-color: red;">
                                        <children>
-                                          <Button mnemonicParsing="false" text="Button" />
+                                          <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="65.0" text="Goal" />
                                        </children>
                                     </HBox>
                                     <HBox alignment="CENTER" layoutX="10.0" layoutY="180.0" prefHeight="70.0" prefWidth="229.0" style="-fx-background-color: red;">
                                        <children>
-                                          <Button mnemonicParsing="false" text="Button" />
+                                          <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="65.0" text="Report" />
                                        </children>
                                     </HBox>
                                  </children>
