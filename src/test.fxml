@@ -110,7 +110,7 @@
                   </Label>
                   <Button fx:id="loginButton" layoutX="256.0" layoutY="179.0" mnemonicParsing="false" onAction="#handleLogin" text="Login" />
                   <TextField fx:id="UsernameField" layoutX="211.0" layoutY="108.0" prefHeight="26.0" prefWidth="194.0" promptText="User" />
-                  <Hyperlink layoutX="320.0" layoutY="180.0" text="Sign up?" />
+                  <Hyperlink layoutX="320.0" layoutY="180.0" onAction="#handleSignUpNavigation" text="Sign up?" />
                   <ImageView fitHeight="27.0" fitWidth="26.0" layoutX="172.0" layoutY="105.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Assets/user.png" />

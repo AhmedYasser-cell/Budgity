@@ -61,6 +61,15 @@ public class User implements IUser {
         return transactions;
     }
 
+    public Transaction getTransaction(int transactionId) {
+        for (Transaction t : transactions) {
+            if (t.getTransactionId() == transactionId) {
+                return t;
+            }
+        }
+        return null;
+    }
+
     public void addTransaction(Transaction transaction) {
         this.transactions.add(transaction);
     }
