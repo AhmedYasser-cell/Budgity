@@ -111,7 +111,7 @@ public class DatabaseManager implements IPersistence {
                 for (src.FinanceCore.Transaction t : user.getTransactions()) {
                     pstmtTx.setInt(1, user.getUserId());
                     pstmtTx.setDouble(2, t.getAmount());
-                    pstmtTx.setString(3, t.getCategory().name());
+                    pstmtTx.setString(3, t.getCategory() != null ? t.getCategory().name() : "OTHER");
                     pstmtTx.setString(4, t instanceof src.FinanceCore.Income ? "INCOME" : "EXPENSE");
                     pstmtTx.setString(5, t.getDate() != null ? t.getDate().toString() : java.time.LocalDate.now().toString());
                     pstmtTx.addBatch();
@@ -191,7 +191,12 @@ public class DatabaseManager implements IPersistence {
                         String type = rsTx.getString("type");
                         java.time.LocalDate date = java.time.LocalDate.parse(rsTx.getString("date"));
                         
-                        src.FinanceCore.Category cat = src.FinanceCore.Category.valueOf(catStr);
+                        src.FinanceCore.Category cat;
+                        try {
+                            cat = src.FinanceCore.Category.valueOf(catStr);
+                        } catch (Exception e) {
+                            cat = src.FinanceCore.Category.OTHER;
+                        }
                         
                         if ("INCOME".equals(type)) {
                             user.addTransaction(new src.FinanceCore.Income(id, amount, date, cat, "System")); 

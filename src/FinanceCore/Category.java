@@ -5,5 +5,6 @@ public enum Category {
     RENT,
     UTILITIES,
     SALARY,
-    ENTERTAINMENT
+    ENTERTAINMENT,
+    OTHER
 }

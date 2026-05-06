@@ -52,6 +52,13 @@ public class fxmlContrroller implements Initializable {
         }
     }
 
+    @FXML
+    private void handleSignUpNavigation() throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("signup.fxml"));
+        Stage stage = (Stage) loginButton.getScene().getWindow();
+        stage.setScene(new Scene(root));
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
     }

@@ -31,7 +31,7 @@
                            </opaqueInsets>
                         </Button>
                         <Button alignment="CENTER" contentDisplay="CENTER" layoutX="312.0" layoutY="43.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="85.0" text="Transcation" />
-                        <Button fx:id="logout" alignment="CENTER" contentDisplay="CENTER" layoutX="90.0" layoutY="10.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="61.0" text="Logout" />
+                        <Button fx:id="logout" alignment="CENTER" contentDisplay="CENTER" layoutX="90.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleLogout" prefHeight="25.0" prefWidth="61.0" text="Logout" />
                         <Slider blockIncrement="1.0" max="1.0" prefHeight="14.0" prefWidth="41.0" />
                      </children>
                   </HBox>
@@ -47,12 +47,12 @@
                                  <children>
                                     <HBox alignment="CENTER" prefHeight="70.0" prefWidth="229.0" style="-fx-background-color: red;">
                                        <children>
-                                          <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="65.0" text="Expenses" />
+                                          <Button fx:id="expenseButton" mnemonicParsing="false" onAction="#handleExpenses" prefHeight="25.0" prefWidth="65.0" text="Expenses" />
                                        </children>
                                     </HBox>
-                                    <HBox alignment="CENTER" layoutX="10.0" layoutY="20.0" prefHeight="70.0" prefWidth="229.0" style="-fx-background-color: red;">
+                                     <HBox alignment="CENTER" layoutX="10.0" layoutY="20.0" prefHeight="70.0" prefWidth="229.0" style="-fx-background-color: red;">
                                        <children>
-                                          <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="65.0" text="Income" />
+                                          <Button fx:id="incomeButton" mnemonicParsing="false" onAction="#handleIncome" prefHeight="25.0" prefWidth="65.0" text="Income" />
                                        </children>
                                     </HBox>
                                     <HBox alignment="CENTER" layoutX="10.0" layoutY="100.0" prefHeight="70.0" prefWidth="229.0" style="-fx-background-color: red;">
