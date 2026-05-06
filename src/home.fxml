@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.image.Image?>
@@ -10,6 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.homeController">
    <children>
@@ -30,8 +32,8 @@
                               <Insets right="10.0" top="10.0" />
                            </opaqueInsets>
                         </Button>
-            <Button fx:id="transactionButton" alignment="CENTER" contentDisplay="CENTER" layoutX="312.0" layoutY="43.0" mnemonicParsing="false" onAction="#goToTransaction" text="Transcation" />           
-                        <Button fx:id="logout" alignment="CENTER" contentDisplay="CENTER" layoutX="90.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleLogout" prefHeight="25.0" prefWidth="61.0" text="Logout" />
+                        <Button alignment="CENTER" contentDisplay="CENTER" layoutX="312.0" layoutY="43.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="85.0" text="Transcation" />
+                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="65.0" text="Goal" />
                         <Slider blockIncrement="1.0" max="1.0" prefHeight="14.0" prefWidth="41.0" />
                      </children>
                   </HBox>
@@ -47,22 +49,22 @@
                                  <children>
                                     <HBox alignment="CENTER" prefHeight="70.0" prefWidth="229.0" style="-fx-background-color: red;">
                                        <children>
-                                          <Button fx:id="expenseButton" mnemonicParsing="false" onAction="#handleExpenses" prefHeight="25.0" prefWidth="65.0" text="Expenses" />
+                                          <Button fx:id="expenseButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="65.0" text="Expenses" />
                                        </children>
                                     </HBox>
-                                     <HBox alignment="CENTER" layoutX="10.0" layoutY="20.0" prefHeight="70.0" prefWidth="229.0" style="-fx-background-color: red;">
+                                    <HBox alignment="CENTER" layoutX="10.0" layoutY="20.0" prefHeight="70.0" prefWidth="229.0" style="-fx-background-color: red;">
                                        <children>
-                                          <Button fx:id="incomeButton" mnemonicParsing="false" onAction="#handleIncome" prefHeight="25.0" prefWidth="65.0" text="Income" />
-                                       </children>
-                                    </HBox>
-                                    <HBox alignment="CENTER" layoutX="10.0" layoutY="100.0" prefHeight="70.0" prefWidth="229.0" style="-fx-background-color: red;">
-                                       <children>
-                                          <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="65.0" text="Goal" />
+                                          <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="65.0" text="Income" />
                                        </children>
                                     </HBox>
                                     <HBox alignment="CENTER" layoutX="10.0" layoutY="180.0" prefHeight="70.0" prefWidth="229.0" style="-fx-background-color: red;">
                                        <children>
                                           <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="65.0" text="Report" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER" layoutX="10.0" layoutY="100.0" prefHeight="70.0" prefWidth="229.0" style="-fx-background-color: red;">
+                                       <children>
+                                          <Button fx:id="logout" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleLogout" prefHeight="25.0" prefWidth="61.0" text="Logout" />
                                        </children>
                                     </HBox>
                                  </children>
@@ -72,7 +74,20 @@
                               </VBox>
                            </children>
                         </AnchorPane>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                           <children>
+                              <VBox alignment="TOP_CENTER" layoutX="203.0" prefHeight="66.0" prefWidth="100.0">
+                                 <children>
+                                    <Label alignment="TOP_CENTER" prefHeight="36.0" prefWidth="100.0" text="Welcome!">
+                                       <font>
+                                          <Font name="TheSans-Bold" size="21.0" />
+                                       </font>
+                                    </Label>
+                                    <Label alignment="TOP_CENTER" layoutX="10.0" layoutY="42.0" prefHeight="44.0" prefWidth="100.0" text="User" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </AnchorPane>
                     </items>
                   </SplitPane>
                </children>
