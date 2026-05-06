@@ -38,7 +38,7 @@ public class fxmlContrroller implements Initializable {
         if (success) {
             // Fetch the full user data from the database so we have the real username
             currentUser = DatabaseManager.getInstance().loadData(email);
-            
+
             try {
                 Parent root = FXMLLoader.load(getClass().getResource("home.fxml"));
                 Stage stage = (Stage) loginButton.getScene().getWindow();
