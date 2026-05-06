@@ -77,7 +77,7 @@ public class DatabaseManager implements IPersistence {
     public boolean saveData(User user) {
         // Upsert User
         String upsertUserSQL = "INSERT INTO Users (userId, name, email, password) VALUES (?, ?, ?, ?) " +
-                               "ON CONFLICT(email) DO UPDATE SET name=excluded.name, password=excluded.password;";
+                               "ON CONFLICT(userId) DO UPDATE SET name=excluded.name, email=excluded.email, password=excluded.password;";
         
         try (Connection conn = connect();
              java.sql.PreparedStatement pstmtUser = conn.prepareStatement(upsertUserSQL, Statement.RETURN_GENERATED_KEYS)) {
