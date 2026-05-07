@@ -27,14 +27,14 @@
                               <Image url="@../Assets/budgity_logo.png" />
                            </image>
                         </ImageView>
-                        <Button fx:id="mainButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#goToMain" prefHeight="25.0" prefWidth="50.0" text="Main" />
-                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="61.0" style="-fx-font-weight: bold;" text="Profile">
+                        <Button fx:id="mainButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#goToMain" prefHeight="25.0" prefWidth="50.0" text="Main" style="-fx-background-color: #3498db; -fx-text-fill: white;" />
+                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="61.0" style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-font-weight: bold;" text="Profile">
                            <opaqueInsets>
                               <Insets right="10.0" top="10.0" />
                            </opaqueInsets>
                         </Button>
-                        <Button fx:id="transactionButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="85.0" text="Transaction" onAction="#goToTransaction" />
-                        <Button fx:id="goalButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="65.0" text="Goal" onAction="#goToGoal" />
+                        <Button fx:id="transactionButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="85.0" text="Transaction" onAction="#goToTransaction" style="-fx-background-color: #3498db; -fx-text-fill: white;" />
+                        <Button fx:id="goalButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="65.0" text="Goal" onAction="#goToGoal" style="-fx-background-color: #3498db; -fx-text-fill: white;" />
                         <Slider blockIncrement="1.0" max="1.0" prefHeight="14.0" prefWidth="41.0" />
                      </children>
                   </HBox>
@@ -85,8 +85,8 @@
                         </VBox>
                         
                         <HBox alignment="CENTER" spacing="20.0">
-                            <Button mnemonicParsing="false" text="Edit Profile" fx:id="editButton" onAction="#handleEditProfile"/>
-                            <Button mnemonicParsing="false" text="Change Password" fx:id="changePasswordButton" onAction="#handleChangePassword"/>
+                             <Button mnemonicParsing="false" text="Edit Profile" fx:id="editButton" onAction="#handleEditProfile" style="-fx-background-color: #3498db; -fx-text-fill: white;" />
+                             <Button mnemonicParsing="false" text="Change Password" fx:id="changePasswordButton" onAction="#handleChangePassword" style="-fx-background-color: #3498db; -fx-text-fill: white;" />
                         </HBox>
                      </children>
                      <padding>

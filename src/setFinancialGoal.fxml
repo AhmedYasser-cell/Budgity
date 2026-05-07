@@ -108,10 +108,10 @@
                   <TableColumn fx:id="progressColumn" prefWidth="87.199951171875" text="Progress" />
               </columns>
             </TableView>
-            <Button fx:id="addGoalButton" layoutX="47.0" layoutY="97.0" mnemonicParsing="false" onAction="#handleAddGoal" prefHeight="26.0" prefWidth="71.0" text="Add" />
-            <Button fx:id="editGoalButton" layoutX="128.0" layoutY="97.0" mnemonicParsing="false" onAction="#handleEditGoal" prefHeight="26.0" prefWidth="71.0" text="Edit Goal" />
-            <Button fx:id="deleteGoalButton" layoutX="211.0" layoutY="97.0" mnemonicParsing="false" onAction="#handleDeleteGoal" prefHeight="26.0" prefWidth="71.0" text="Delete" />
-            <Button fx:id="backButton" layoutX="547.0" layoutY="97.0" mnemonicParsing="false" onAction="#handleBack" prefHeight="26.0" prefWidth="53.0" text="Back" />
+            <Button fx:id="addGoalButton" layoutX="47.0" layoutY="97.0" mnemonicParsing="false" onAction="#handleAddGoal" prefHeight="26.0" prefWidth="71.0" text="Add" style="-fx-background-color: #3498db; -fx-text-fill: white;" />
+            <Button fx:id="editGoalButton" layoutX="128.0" layoutY="97.0" mnemonicParsing="false" onAction="#handleEditGoal" prefHeight="26.0" prefWidth="71.0" text="Edit Goal" style="-fx-background-color: #3498db; -fx-text-fill: white;" />
+            <Button fx:id="deleteGoalButton" layoutX="211.0" layoutY="97.0" mnemonicParsing="false" onAction="#handleDeleteGoal" prefHeight="26.0" prefWidth="71.0" text="Delete" style="-fx-background-color: #3498db; -fx-text-fill: white;" />
+            <Button fx:id="backButton" layoutX="547.0" layoutY="97.0" mnemonicParsing="false" onAction="#handleBack" prefHeight="26.0" prefWidth="53.0" text="Back" style="-fx-background-color: #3498db; -fx-text-fill: white;" />
       </children>
     </AnchorPane>
   </children>

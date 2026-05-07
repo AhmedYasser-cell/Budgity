@@ -26,14 +26,14 @@
                               <Image url="@../Assets/budgity_logo.png" />
                            </image>
                         </ImageView>
-                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="53.0" style="-fx-font-weight: bold;" text="Main" />
-                        <Button fx:id="profileButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#goToProfile" prefHeight="25.0" prefWidth="57.0" text="Profile">
+                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="53.0" style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-font-weight: bold;" text="Main" />
+                        <Button fx:id="profileButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#goToProfile" prefHeight="25.0" prefWidth="57.0" text="Profile" style="-fx-background-color: #3498db; -fx-text-fill: white;">
                            <opaqueInsets>
                               <Insets right="10.0" top="10.0" />
                            </opaqueInsets>
                         </Button>
-                        <Button fx:id="transactionButton" alignment="CENTER" contentDisplay="CENTER" layoutX="312.0" layoutY="43.0" mnemonicParsing="false" onAction="#goToTransaction" prefHeight="25.0" prefWidth="85.0" text="Transaction" />
-                        <Button fx:id="goalButton" mnemonicParsing="false" onAction="#goToGoals" prefHeight="25.0" prefWidth="65.0" text="Goal" />
+                        <Button fx:id="transactionButton" alignment="CENTER" contentDisplay="CENTER" layoutX="312.0" layoutY="43.0" mnemonicParsing="false" onAction="#goToTransaction" prefHeight="25.0" prefWidth="85.0" text="Transaction" style="-fx-background-color: #3498db; -fx-text-fill: white;" />
+                        <Button fx:id="goalButton" mnemonicParsing="false" onAction="#goToGoals" prefHeight="25.0" prefWidth="65.0" text="Goal" style="-fx-background-color: #3498db; -fx-text-fill: white;" />
                         <Slider blockIncrement="1.0" max="1.0" prefHeight="14.0" prefWidth="41.0" />
                      </children>
                   </HBox>
@@ -47,22 +47,22 @@
                            <children>
                               <VBox prefHeight="342.0" prefWidth="85.0" spacing="10.0">
                                  <children>
-                                    <HBox alignment="CENTER" prefHeight="70.0" prefWidth="229.0" style="-fx-background-color: red;">
+                                    <HBox alignment="CENTER" prefHeight="70.0" prefWidth="229.0" style="-fx-background-color: #3498db;">
                                        <children>
                                           <Button fx:id="expenseButton" mnemonicParsing="false" onAction="#handleExpenses" prefHeight="25.0" prefWidth="65.0" text="Expenses" />
                                        </children>
                                     </HBox>
-                                    <HBox alignment="CENTER" layoutX="10.0" layoutY="20.0" prefHeight="70.0" prefWidth="229.0" style="-fx-background-color: red;">
+                                    <HBox alignment="CENTER" layoutX="10.0" layoutY="20.0" prefHeight="70.0" prefWidth="229.0" style="-fx-background-color: #3498db;">
                                        <children>
                                           <Button fx:id="incomeButton" mnemonicParsing="false" onAction="#handleIncome" prefHeight="25.0" prefWidth="65.0" text="Income" />
                                        </children>
                                     </HBox>
-                                    <HBox alignment="CENTER" layoutX="10.0" layoutY="180.0" prefHeight="70.0" prefWidth="229.0" style="-fx-background-color: red;">
+                                    <HBox alignment="CENTER" layoutX="10.0" layoutY="180.0" prefHeight="70.0" prefWidth="229.0" style="-fx-background-color: #3498db;">
                                        <children>
                                           <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="65.0" text="Report" />
                                        </children>
                                     </HBox>
-                                    <HBox alignment="CENTER" layoutX="10.0" layoutY="100.0" prefHeight="70.0" prefWidth="229.0" style="-fx-background-color: red;">
+                                    <HBox alignment="CENTER" layoutX="10.0" layoutY="100.0" prefHeight="70.0" prefWidth="229.0" style="-fx-background-color: #3498db;">
                                        <children>
                                           <Button fx:id="logout" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleLogout" prefHeight="25.0" prefWidth="61.0" text="Logout" />
                                        </children>
@@ -83,7 +83,7 @@
                                           <Font name="TheSans-Bold" size="21.0" />
                                        </font>
                                     </Label>
-                                    <Label alignment="TOP_CENTER" layoutX="10.0" layoutY="42.0" prefHeight="44.0" prefWidth="100.0" text="User" />
+                                    <Label fx:id="usernameLabel" alignment="TOP_CENTER" layoutX="10.0" layoutY="42.0" prefHeight="44.0" prefWidth="100.0" text="User" />
                                  </children>
                               </VBox>
                            </children>
