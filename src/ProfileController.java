@@ -29,6 +29,12 @@ public class ProfileController implements Initializable {
     private Button editButton;
 
     @FXML
+    private Button transactionButton;
+
+    @FXML
+    private Button goalButton;
+
+    @FXML
     private Button changePasswordButton;
 
     @FXML
@@ -41,6 +47,20 @@ public class ProfileController implements Initializable {
     private void goToMain() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("home.fxml"));
         Stage stage = (Stage) mainButton.getScene().getWindow();
+        stage.setScene(new Scene(root));
+    }
+
+    @FXML
+    private void goToTransaction() throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("transaction.fxml"));
+        Stage stage = (Stage) transactionButton.getScene().getWindow();
+        stage.setScene(new Scene(root));
+    }
+
+    @FXML
+    private void goToGoal() throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("setFinancialGoal.fxml"));
+        Stage stage = (Stage) goalButton.getScene().getWindow();
         stage.setScene(new Scene(root));
     }
 
