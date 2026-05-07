@@ -12,7 +12,7 @@ public class DatabaseManager implements IPersistence {
     private String dbUrl;
 
     private DatabaseManager() {
-        this.dbUrl = "jdbc:sqlite:budgeting.db"; 
+        this.dbUrl = "jdbc:sqlite:budgeting.db";
     }
 
     public static DatabaseManager getInstance() {
@@ -60,14 +60,14 @@ public class DatabaseManager implements IPersistence {
                 "FOREIGN KEY(userId) REFERENCES Users(userId));";
 
         try (Connection conn = connect();
-             Statement stmt = conn.createStatement()) {
-             
+                Statement stmt = conn.createStatement()) {
+
             stmt.execute(createUsersTable);
             stmt.execute(createTransactionsTable);
             stmt.execute(createBudgetsTable);
             stmt.execute(createGoalsTable);
             System.out.println("Database tables initialized successfully.");
-            
+
         } catch (SQLException e) {
             System.out.println("Database initialization failed: " + e.getMessage());
         }
@@ -77,11 +77,12 @@ public class DatabaseManager implements IPersistence {
     public boolean saveData(User user) {
         // Upsert User
         String upsertUserSQL = "INSERT INTO Users (userId, name, email, password) VALUES (?, ?, ?, ?) " +
-                               "ON CONFLICT(userId) DO UPDATE SET name=excluded.name, email=excluded.email, password=excluded.password;";
-        
+                "ON CONFLICT(userId) DO UPDATE SET name=excluded.name, email=excluded.email, password=excluded.password;";
+
         try (Connection conn = connect();
-             java.sql.PreparedStatement pstmtUser = conn.prepareStatement(upsertUserSQL, Statement.RETURN_GENERATED_KEYS)) {
-             
+                java.sql.PreparedStatement pstmtUser = conn.prepareStatement(upsertUserSQL,
+                        Statement.RETURN_GENERATED_KEYS)) {
+
             if (user.getUserId() == 0) {
                 pstmtUser.setNull(1, java.sql.Types.INTEGER);
             } else {
@@ -91,7 +92,7 @@ public class DatabaseManager implements IPersistence {
             pstmtUser.setString(3, user.getEmail());
             pstmtUser.setString(4, user.getPassword());
             pstmtUser.executeUpdate();
-            
+
             if (user.getUserId() == 0) {
                 try (java.sql.ResultSet generatedKeys = pstmtUser.getGeneratedKeys()) {
                     if (generatedKeys.next()) {
@@ -113,7 +114,8 @@ public class DatabaseManager implements IPersistence {
                     pstmtTx.setDouble(2, t.getAmount());
                     pstmtTx.setString(3, t.getCategory() != null ? t.getCategory().name() : "OTHER");
                     pstmtTx.setString(4, t instanceof src.FinanceCore.Income ? "INCOME" : "EXPENSE");
-                    pstmtTx.setString(5, t.getDate() != null ? t.getDate().toString() : java.time.LocalDate.now().toString());
+                    pstmtTx.setString(5,
+                            t.getDate() != null ? t.getDate().toString() : java.time.LocalDate.now().toString());
                     pstmtTx.addBatch();
                 }
                 pstmtTx.executeBatch();
@@ -154,7 +156,7 @@ public class DatabaseManager implements IPersistence {
                 }
                 pstmtG.executeBatch();
             }
-            
+
             return true;
         } catch (SQLException e) {
             System.out.println("Failed to save data: " + e.getMessage());
@@ -163,21 +165,20 @@ public class DatabaseManager implements IPersistence {
     }
 
     @Override
-    public User loadData(String email) { 
+    public User loadData(String email) {
         String sql = "SELECT * FROM Users WHERE email = ?";
         try (Connection conn = connect();
-             java.sql.PreparedStatement pstmt = conn.prepareStatement(sql)) {
-             
+                java.sql.PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
             pstmt.setString(1, email);
             java.sql.ResultSet rs = pstmt.executeQuery();
-            
+
             if (rs.next()) {
                 User user = new User(
-                    rs.getInt("userId"),
-                    rs.getString("name"),
-                    rs.getString("password"),
-                    rs.getString("email")
-                );
+                        rs.getInt("userId"),
+                        rs.getString("name"),
+                        rs.getString("password"),
+                        rs.getString("email"));
 
                 // Load Transactions
                 String txSQL = "SELECT * FROM Transactions WHERE userId = ?";
@@ -190,18 +191,18 @@ public class DatabaseManager implements IPersistence {
                         String catStr = rsTx.getString("category");
                         String type = rsTx.getString("type");
                         java.time.LocalDate date = java.time.LocalDate.parse(rsTx.getString("date"));
-                        
+
                         src.FinanceCore.Category cat;
                         try {
                             cat = src.FinanceCore.Category.valueOf(catStr);
                         } catch (Exception e) {
                             cat = src.FinanceCore.Category.OTHER;
                         }
-                        
+
                         if ("INCOME".equals(type)) {
-                            user.addTransaction(new src.FinanceCore.Income(id, amount, date, cat, "System")); 
+                            user.addTransaction(new src.FinanceCore.Income(id, amount, date, cat, "System"));
                         } else {
-                            user.addTransaction(new src.FinanceCore.Expense(id, amount, date, cat, "System")); 
+                            user.addTransaction(new src.FinanceCore.Expense(id, amount, date, cat, "System"));
                         }
                     }
                 }
@@ -231,11 +232,12 @@ public class DatabaseManager implements IPersistence {
                         String name = rsG.getString("name");
                         double target = rsG.getDouble("targetAmount");
                         double current = rsG.getDouble("currentAmount");
-                        src.FinanceCore.FinancialGoal goal = new src.FinanceCore.FinancialGoal(id, name, target, current);
+                        src.FinanceCore.FinancialGoal goal = new src.FinanceCore.FinancialGoal(id, name, target,
+                                current);
                         user.addGoal(goal);
                     }
                 }
-                
+
                 return user;
             }
         } catch (SQLException e) {
@@ -247,12 +249,12 @@ public class DatabaseManager implements IPersistence {
     public boolean verifyLogin(String email, String password) {
         String sql = "SELECT * FROM Users WHERE email = ? AND password = ?";
         try (Connection conn = connect();
-             java.sql.PreparedStatement pstmt = conn.prepareStatement(sql)) {
-             
+                java.sql.PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
             pstmt.setString(1, email);
             pstmt.setString(2, password);
             java.sql.ResultSet rs = pstmt.executeQuery();
-            
+
             return rs.next(); // True if a record matches
         } catch (SQLException e) {
             System.out.println("Login verification failed: " + e.getMessage());

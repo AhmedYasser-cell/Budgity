@@ -105,20 +105,20 @@ public class TransactionController {
                 LocalDate date =
                         LocalDate.parse(rs.getString("date"));
 
-                Category category =
-                        Category.valueOf(rs.getString("category"));
+                Category category;
+                try {
+                    String catStr = rs.getString("category");
+                    category = (catStr != null) ? Category.valueOf(catStr) : Category.OTHER;
+                } catch (Exception e) {
+                    category = Category.OTHER;
+                }
 
-                String type =
-                        rs.getString("type");
-
-                if (type.equalsIgnoreCase("Income")) {
-
+                String type = rs.getString("type");
+                if (type != null && type.equalsIgnoreCase("Income")) {
                     allTransactions.add(
                             new Income(id, amount, date, category, "Database")
                     );
-
                 } else {
-
                     allTransactions.add(
                             new Expense(id, amount, date, category, "Cash")
                     );

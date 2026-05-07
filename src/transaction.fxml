@@ -50,7 +50,7 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="searchField" layoutX="19.0" layoutY="27.0" text="Search transactions..." />
+            <TextField fx:id="searchField" layoutX="19.0" layoutY="27.0" promptText="Search transactions..." />
             <ComboBox fx:id="typeFilter" layoutX="169.0" layoutY="27.0" prefWidth="150.0" />
             <Button fx:id="backButton" layoutX="520.0" layoutY="27.0" mnemonicParsing="false" onAction="#goBack" text="Back" />
             <TableView fx:id="transactionsTable" layoutY="63.0" prefHeight="311.0" prefWidth="640.0">

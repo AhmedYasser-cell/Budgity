@@ -108,10 +108,18 @@ public class homeController implements Initializable {
         methodChoice.getItems().addAll("Cash", "Credit Card", "Debit Card", "Bank Transfer");
         methodChoice.setValue("Cash");
 
+        ChoiceBox<String> categoryChoice = new ChoiceBox<>();
+        for (Category category : Category.values()) {
+            categoryChoice.getItems().add(category.toString());
+        }
+        categoryChoice.setValue(Category.OTHER.toString());
+
         grid.add(new Label("Amount:"), 0, 0);
         grid.add(amountField, 1, 0);
         grid.add(new Label("Method:"), 0, 2);
         grid.add(methodChoice, 1, 2);
+        grid.add(new Label("Category:"), 0, 3);
+        grid.add(categoryChoice, 1, 3);
 
         dialog.getDialogPane().setContent(grid);
 
@@ -133,7 +141,7 @@ public class homeController implements Initializable {
                         fxmlContrroller.currentUser.getTransactions().size() + 1,
                         amount,
                         LocalDate.now(),
-                        Category.OTHER,
+                        Category.valueOf(categoryChoice.getValue()),
                         method);
 
                 fxmlContrroller.currentUser.addTransaction(expense);

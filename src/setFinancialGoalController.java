@@ -134,12 +134,13 @@ public class setFinancialGoalController {
             return;
         }
 
-        String sql = "DELETE FROM FinancialGoals WHERE goalId = ?";
+        String sql = "DELETE FROM FinancialGoals WHERE goalId = ? AND userId = ?";
 
         try (Connection conn = DriverManager.getConnection(DB_URL);
                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             pstmt.setInt(1, selectedGoal.getGoalId());
+            pstmt.setInt(2, fxmlContrroller.currentUser.getUserId());
             pstmt.executeUpdate();
 
             // 4.TableView (UI)
@@ -193,7 +194,7 @@ public class setFinancialGoalController {
 
     private void saveGoalToDatabase(FinancialGoal goal) {
 
-        String sql = "INSERT INTO FinancialGoals(name, targetAmount, currentAmount) VALUES(?, ?, ?)";
+        String sql = "INSERT INTO FinancialGoals(name, targetAmount, currentAmount, userId) VALUES(?, ?, ?, ?)";
 
         try (Connection conn = DriverManager.getConnection(DB_URL);
                 PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
@@ -201,6 +202,7 @@ public class setFinancialGoalController {
             pstmt.setString(1, goal.getName());
             pstmt.setDouble(2, goal.getTargetAmount());
             pstmt.setDouble(3, goal.getCurrentAmount());
+            pstmt.setInt(4, fxmlContrroller.currentUser.getUserId());
 
             pstmt.executeUpdate();
 
@@ -235,14 +237,16 @@ public class setFinancialGoalController {
     }
 
     private void loadGoalsFromDatabase() {
-
         goalsList.clear();
+        if (fxmlContrroller.currentUser == null) return;
 
-        String sql = "SELECT * FROM FinancialGoals";
+        String sql = "SELECT * FROM FinancialGoals WHERE userId = ?";
 
         try (Connection conn = DriverManager.getConnection(DB_URL);
-                Statement stmt = conn.createStatement();
-                ResultSet rs = stmt.executeQuery(sql)) {
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setInt(1, fxmlContrroller.currentUser.getUserId());
+            ResultSet rs = pstmt.executeQuery();
 
             while (rs.next()) {
 
