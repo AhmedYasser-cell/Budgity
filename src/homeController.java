@@ -49,6 +49,9 @@ public class homeController implements Initializable {
     private Button transactionButton;
 
     @FXML
+    private Label usernameLabel;
+
+    @FXML
     private void goToTransaction() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("transaction.fxml"));
         Stage stage = (Stage) transactionButton.getScene().getWindow();
@@ -230,5 +233,6 @@ public class homeController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        usernameLabel.setText(fxmlContrroller.currentUser.getUsername());
     }
 }
