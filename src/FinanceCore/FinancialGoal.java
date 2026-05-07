@@ -54,7 +54,7 @@ public class FinancialGoal {
         }
     }
 
-    double getPercentageAchieved() {
+    public double getPercentageAchieved() {
         if (getTargetAmount() > 0) {
             return (getCurrentAmount() / getTargetAmount()) * 100;
         } else {

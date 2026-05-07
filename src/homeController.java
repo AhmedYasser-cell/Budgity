@@ -43,6 +43,9 @@ public class homeController implements Initializable {
     private Button incomeButton;
 
     @FXML
+    private Button goalButton;
+
+    @FXML
     private Button transactionButton;
 
     @FXML
@@ -65,6 +68,16 @@ public class homeController implements Initializable {
         Stage stage = (Stage) logout.getScene().getWindow();
         stage.setScene(new Scene(root));
         fxmlContrroller.currentUser = null;
+    }
+
+    @FXML
+    private void goToGoals() throws IOException {
+
+        Parent root = FXMLLoader.load(
+                getClass().getResource("setFinancialGoal.fxml"));
+
+        Stage stage = (Stage) goalButton.getScene().getWindow();
+        stage.setScene(new Scene(root));
     }
 
     @FXML

@@ -33,7 +33,7 @@
                            </opaqueInsets>
                         </Button>
                         <Button fx:id="transactionButton" alignment="CENTER" contentDisplay="CENTER" layoutX="312.0" layoutY="43.0" mnemonicParsing="false" onAction="#goToTransaction" prefHeight="25.0" prefWidth="85.0" text="Transcation" />
-                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="65.0" text="Goal" />
+                        <Button fx:id="goalButton" mnemonicParsing="false" onAction="#goToGoals" prefHeight="25.0" prefWidth="65.0" text="Goal" />
                         <Slider blockIncrement="1.0" max="1.0" prefHeight="14.0" prefWidth="41.0" />
                      </children>
                   </HBox>
