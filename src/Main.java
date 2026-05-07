@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
+import javafx.scene.image.Image;
 
 public class Main extends Application {
 
@@ -19,6 +20,7 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("test.fxml"));
 
         Scene scene = new Scene(root);
+        stage.getIcons().add(new Image("file:Assets/budgity_logo.png"));
         stage.setTitle("Budgeting System");
         stage.setScene(scene);
         stage.show();

@@ -59,7 +59,7 @@
                                     </HBox>
                                     <HBox alignment="CENTER" layoutX="10.0" layoutY="180.0" prefHeight="70.0" prefWidth="229.0" style="-fx-background-color: #3498db;">
                                        <children>
-                                          <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="65.0" text="Report" />
+                                          <Button fx:id="reportButton" mnemonicParsing="false" onAction="#handleReport" prefHeight="25.0" prefWidth="65.0" text="Report" />
                                        </children>
                                     </HBox>
                                     <HBox alignment="CENTER" layoutX="10.0" layoutY="100.0" prefHeight="70.0" prefWidth="229.0" style="-fx-background-color: #3498db;">

@@ -28,6 +28,16 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import src.Infrastructure.DatabaseManager;
+import javafx.stage.FileChooser;
+import java.io.File;
+import java.io.PrintWriter;
+import src.FinanceCore.Transaction;
+import javafx.scene.chart.PieChart;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.layout.VBox;
+import java.util.Map;
+import java.util.HashMap;
 
 public class homeController implements Initializable {
 
@@ -47,6 +57,9 @@ public class homeController implements Initializable {
 
     @FXML
     private Button transactionButton;
+
+    @FXML
+    private Button reportButton;
 
     @FXML
     private Label usernameLabel;
@@ -219,6 +232,89 @@ public class homeController implements Initializable {
 
             } catch (NumberFormatException e) {
                 showError("Invalid Amount", "Please enter a valid numeric value for the amount.");
+            }
+        }
+    }
+
+    @FXML
+    private void handleReport() {
+        if (fxmlContrroller.currentUser == null)
+            return;
+
+        // Aggregate Expenses by Category
+        Map<Category, Double> categoryTotals = new HashMap<>();
+        for (Transaction t : fxmlContrroller.currentUser.getTransactions()) {
+            if (t instanceof Expense) {
+                Category cat = t.getCategory();
+                if (cat == null)
+                    cat = Category.OTHER; // Fallback for null categories
+                categoryTotals.put(cat, categoryTotals.getOrDefault(cat, 0.0) + t.getAmount());
+            }
+        }
+
+        // Create the Pie Chart Data
+        ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
+        for (Map.Entry<Category, Double> entry : categoryTotals.entrySet()) {
+            pieChartData.add(new PieChart.Data(entry.getKey().toString(), entry.getValue()));
+        }
+
+        // Create the Pie Chart
+        PieChart pieChart = new PieChart(pieChartData);
+        pieChart.setTitle("Expense Breakdown by Category");
+        pieChart.setLabelsVisible(true);
+
+        // Create the Dialog
+        Dialog<ButtonType> dialog = new Dialog<>();
+        dialog.setTitle("Financial Report");
+        dialog.setHeaderText("Detailed Expense Summary");
+
+        // Set the button types (Export and Close)
+        ButtonType exportButtonType = new ButtonType("Export to CSV", ButtonBar.ButtonData.OK_DONE);
+        dialog.getDialogPane().getButtonTypes().addAll(exportButtonType, ButtonType.CANCEL);
+
+        // Layout for the dialog
+        VBox vbox = new VBox(pieChart);
+        vbox.setPadding(new Insets(10));
+        vbox.setPrefSize(500, 500); // Slightly larger for categories
+        dialog.getDialogPane().setContent(vbox);
+
+        // Show dialog and wait for user action
+        Optional<ButtonType> result = dialog.showAndWait();
+        if (result.isPresent() && result.get() == exportButtonType) {
+            exportToCSV();
+        }
+    }
+
+    private void exportToCSV() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Save Report");
+        fileChooser.setInitialFileName("transaction_report.csv");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV Files", "*.csv"));
+
+        File file = fileChooser.showSaveDialog(reportButton.getScene().getWindow());
+
+        if (file != null) {
+            try (PrintWriter writer = new PrintWriter(file)) {
+                // Header
+                writer.println("Date,Type,Category,Amount");
+
+                for (Transaction t : fxmlContrroller.currentUser.getTransactions()) {
+                    String type = (t instanceof Income) ? "Income" : "Expense";
+                    writer.printf("%s,%s,%s,%.2f%n",
+                            t.getDate(),
+                            type,
+                            t.getCategory(),
+                            t.getAmount());
+                }
+
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Report Saved");
+                alert.setHeaderText(null);
+                alert.setContentText("Report has been successfully saved to " + file.getAbsolutePath());
+                alert.showAndWait();
+
+            } catch (IOException e) {
+                showError("File Error", "Could not save the report: " + e.getMessage());
             }
         }
     }
