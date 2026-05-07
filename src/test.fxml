@@ -41,16 +41,17 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.fxmlContrroller">
+<VBox prefHeight="400.0" prefWidth="640.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.fxmlContrroller">
   <children>
       <SplitPane dividerPositions="0.15013404825737264" orientation="VERTICAL" prefHeight="410.0" prefWidth="640.0">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="70.0" prefWidth="638.0">
                <children>
-                  <Label alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" layoutX="250.0" layoutY="2.0" prefHeight="47.0" prefWidth="139.0" text="Welcome!" textAlignment="CENTER">
+                  <Label alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" layoutX="250.0" layoutY="2.0" prefHeight="47.0" prefWidth="139.0" styleClass="header-label" text="Welcome!" textAlignment="CENTER">
                      <font>
                         <Font name="TheSans-Bold" size="28.0" />
                      </font>
@@ -59,25 +60,37 @@
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="343.0" prefWidth="638.0">
                <children>
-                  <PasswordField fx:id="PasswordField" layoutX="234.0" layoutY="145.0" promptText="Password" />
-                  <Label alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" layoutX="207.0" layoutY="14.0" prefHeight="72.0" prefWidth="225.0" text="Login Page" textAlignment="CENTER">
-                     <font>
-                        <Font name="TheSans-Bold" size="37.0" />
-                     </font>
-                  </Label>
-                  <Button fx:id="loginButton" layoutX="256.0" layoutY="179.0" mnemonicParsing="false" onAction="#handleLogin" text="Login" style="-fx-background-color: #3498db; -fx-text-fill: white;" />
-                  <TextField fx:id="UsernameField" layoutX="211.0" layoutY="108.0" prefHeight="26.0" prefWidth="194.0" promptText="User" />
-                  <Hyperlink layoutX="320.0" layoutY="180.0" onAction="#handleSignUpNavigation" text="Sign up?" />
-                  <ImageView fitHeight="27.0" fitWidth="26.0" layoutX="172.0" layoutY="105.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Assets/user.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="27.0" fitWidth="25.0" layoutX="198.0" layoutY="145.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Assets/lock.png" />
-                     </image>
-                  </ImageView>
+                  <VBox alignment="CENTER" layoutX="169.0" layoutY="20.0" prefHeight="300.0" prefWidth="300.0" spacing="15.0" styleClass="card">
+                     <children>
+                        <Label alignment="CENTER" styleClass="header-label" text="Login">
+                           <font>
+                              <Font name="TheSans-Bold" size="30.0" />
+                           </font>
+                        </Label>
+                        <HBox alignment="CENTER" spacing="10.0">
+                           <children>
+                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Assets/user.png" />
+                                 </image>
+                              </ImageView>
+                              <TextField fx:id="UsernameField" prefHeight="40.0" prefWidth="220.0" promptText="Username" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" spacing="10.0">
+                           <children>
+                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Assets/lock.png" />
+                                 </image>
+                              </ImageView>
+                              <PasswordField fx:id="PasswordField" prefHeight="40.0" prefWidth="220.0" promptText="Password" />
+                           </children>
+                        </HBox>
+                        <Button fx:id="loginButton" mnemonicParsing="false" onAction="#handleLogin" prefHeight="40.0" prefWidth="260.0" text="Login" />
+                        <Hyperlink onAction="#handleSignUpNavigation" text="Don't have an account? Sign up" />
+                     </children>
+                  </VBox>
                </children>
             </AnchorPane>
         </items>

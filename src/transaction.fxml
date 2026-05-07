@@ -39,28 +39,34 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.TransactionController">  <children>
+<VBox prefHeight="400.0" prefWidth="640.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.TransactionController">  <children>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
       <children>
-            <Label layoutX="259.0" layoutY="178.0" text="Transactions History">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
-            <TextField fx:id="searchField" layoutX="19.0" layoutY="27.0" promptText="Search transactions..." />
-            <ComboBox fx:id="typeFilter" layoutX="169.0" layoutY="27.0" prefWidth="150.0" />
-            <Button fx:id="backButton" layoutX="520.0" layoutY="27.0" mnemonicParsing="false" onAction="#goBack" text="Back" style="-fx-background-color: #3498db; -fx-text-fill: white;" />
-            <TableView fx:id="transactionsTable" layoutY="63.0" prefHeight="311.0" prefWidth="640.0">
-              <columns>
-                <TableColumn fx:id="dateColumn" prefWidth="144.0" text="Date" />
-                <TableColumn fx:id="typeColumn" prefWidth="170.4000244140625" text="Type" />
-                  <TableColumn fx:id="categoryColumn" prefWidth="160.79998779296875" text="Category" />
-                  <TableColumn fx:id="amountColumn" prefWidth="166.39996337890625" text="Amount" />
-              </columns>
-            </TableView>
+            <VBox layoutX="20.0" layoutY="20.0" prefWidth="600.0" spacing="15.0">
+               <children>
+                  <HBox alignment="CENTER_LEFT" spacing="15.0" styleClass="card">
+                     <children>
+                        <Label styleClass="header-label" text="Transaction History" />
+                        <HBox HBox.hgrow="ALWAYS" />
+                        <TextField fx:id="searchField" prefWidth="150.0" promptText="Search..." />
+                        <ComboBox fx:id="typeFilter" prefWidth="100.0" />
+                        <Button fx:id="backButton" mnemonicParsing="false" onAction="#goBack" text="Back" />
+                     </children>
+                  </HBox>
+                  <TableView fx:id="transactionsTable" prefHeight="280.0" prefWidth="600.0">
+                    <columns>
+                      <TableColumn fx:id="dateColumn" prefWidth="120.0" text="Date" />
+                      <TableColumn fx:id="typeColumn" prefWidth="120.0" text="Type" />
+                        <TableColumn fx:id="categoryColumn" prefWidth="180.0" text="Category" />
+                        <TableColumn fx:id="amountColumn" prefWidth="150.0" text="Amount" />
+                    </columns>
+                  </TableView>
+               </children>
+            </VBox>
       </children>
     </AnchorPane>
   </children>

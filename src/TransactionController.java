@@ -14,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import src.Infrastructure.ThemeManager;
 
 import src.FinanceCore.Category;
 import src.FinanceCore.Expense;
@@ -193,6 +194,7 @@ public class TransactionController {
 
         Parent root =
                 FXMLLoader.load(getClass().getResource("home.fxml"));
+        ThemeManager.applyTheme(root);
 
         Stage stage =
                 (Stage) backButton.getScene().getWindow();

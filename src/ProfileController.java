@@ -16,6 +16,7 @@ import java.util.Optional;
 import src.UserManagement.*;
 import src.fxmlContrroller;
 import src.Infrastructure.DatabaseManager;
+import src.Infrastructure.ThemeManager;
 
 import javafx.scene.layout.GridPane;
 import javafx.geometry.Insets;
@@ -44,8 +45,12 @@ public class ProfileController implements Initializable {
     private Label emailLabel;
 
     @FXML
+    private Slider themeSlider;
+
+    @FXML
     private void goToMain() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("home.fxml"));
+        ThemeManager.applyTheme(root);
         Stage stage = (Stage) mainButton.getScene().getWindow();
         stage.setScene(new Scene(root));
     }
@@ -53,6 +58,7 @@ public class ProfileController implements Initializable {
     @FXML
     private void goToTransaction() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("transaction.fxml"));
+        ThemeManager.applyTheme(root);
         Stage stage = (Stage) transactionButton.getScene().getWindow();
         stage.setScene(new Scene(root));
     }
@@ -60,6 +66,7 @@ public class ProfileController implements Initializable {
     @FXML
     private void goToGoal() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("setFinancialGoal.fxml"));
+        ThemeManager.applyTheme(root);
         Stage stage = (Stage) goalButton.getScene().getWindow();
         stage.setScene(new Scene(root));
     }
@@ -73,6 +80,7 @@ public class ProfileController implements Initializable {
         Dialog<ButtonType> dialog = new Dialog<>();
         dialog.setTitle("Edit Profile");
         dialog.setHeaderText("Update your profile information.\nLeave unchanged to keep current values.");
+        ThemeManager.applyThemeToDialog(dialog);
 
         // Set the button types.
         ButtonType saveButtonType = new ButtonType("Save", ButtonBar.ButtonData.OK_DONE);
@@ -124,6 +132,7 @@ public class ProfileController implements Initializable {
         dialog.setTitle("Change Password");
         dialog.setHeaderText("Update your password");
         dialog.setContentText("Please enter your new password:");
+        ThemeManager.applyThemeToDialog(dialog);
 
         Optional<String> result = dialog.showAndWait();
         result.ifPresent(password -> {
@@ -155,6 +164,14 @@ public class ProfileController implements Initializable {
         } else {
             setUserData("Guest", "Not Available");
         }
+
+        // Initialize theme slider
+        themeSlider.setValue(ThemeManager.isDarkMode() ? 1 : 0);
+        themeSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
+            boolean darkMode = newValue.doubleValue() > 0.5;
+            ThemeManager.setDarkMode(darkMode);
+            ThemeManager.applyTheme(themeSlider.getScene().getRoot());
+        });
     }
 
     public void setUserData(String username, String email) {

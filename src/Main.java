@@ -18,11 +18,13 @@ public class Main extends Application {
         src.Infrastructure.DatabaseManager.getInstance().initializeDatabase();
 
         Parent root = FXMLLoader.load(getClass().getResource("test.fxml"));
+        src.Infrastructure.ThemeManager.applyTheme(root);
 
         Scene scene = new Scene(root);
         stage.getIcons().add(new Image("file:Assets/budgity_logo.png"));
         stage.setTitle("Budgeting System");
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
     }
 

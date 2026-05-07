@@ -13,6 +13,7 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 import src.FinanceCore.FinancialGoal;
 import src.Infrastructure.DatabaseManager;
+import src.Infrastructure.ThemeManager;
 
 import java.io.IOException;
 import java.sql.*;
@@ -158,6 +159,7 @@ public class setFinancialGoalController {
     private void handleBack() throws IOException {
 
         Parent root = FXMLLoader.load(getClass().getResource("home.fxml"));
+        ThemeManager.applyTheme(root);
 
         Stage stage = (Stage) backButton.getScene().getWindow();
 
@@ -277,6 +279,7 @@ public class setFinancialGoalController {
         alert.setTitle(title);
         alert.setHeaderText(null);
         alert.setContentText(message);
+        ThemeManager.applyThemeToDialog(alert);
         alert.showAndWait();
     }
 }

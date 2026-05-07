@@ -18,6 +18,7 @@ import javafx.stage.Stage;
 
 import src.UserManagement.*;
 import src.Infrastructure.DatabaseManager;
+import src.Infrastructure.ThemeManager;
 
 public class fxmlContrroller implements Initializable {
 
@@ -41,6 +42,7 @@ public class fxmlContrroller implements Initializable {
 
             try {
                 Parent root = FXMLLoader.load(getClass().getResource("home.fxml"));
+                ThemeManager.applyTheme(root);
                 Stage stage = (Stage) loginButton.getScene().getWindow();
                 stage.setScene(new Scene(root));
             } catch (IOException e) {
@@ -55,6 +57,7 @@ public class fxmlContrroller implements Initializable {
     @FXML
     private void handleSignUpNavigation() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("signup.fxml"));
+        ThemeManager.applyTheme(root);
         Stage stage = (Stage) loginButton.getScene().getWindow();
         stage.setScene(new Scene(root));
     }

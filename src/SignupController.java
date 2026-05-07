@@ -10,6 +10,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import src.UserManagement.User;
+import src.Infrastructure.ThemeManager;
 import java.io.IOException;
 
 public class SignupController {
@@ -52,6 +53,7 @@ public class SignupController {
     private void goToLogin() {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("test.fxml"));
+            ThemeManager.applyTheme(root);
             Stage stage = (Stage) signupButton.getScene().getWindow();
             stage.setScene(new Scene(root));
         } catch (IOException e) {
@@ -64,6 +66,7 @@ public class SignupController {
         alert.setTitle(title);
         alert.setHeaderText(null);
         alert.setContentText(content);
+        ThemeManager.applyThemeToDialog(alert);
         alert.showAndWait();
     }
 }

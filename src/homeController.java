@@ -38,6 +38,8 @@ import javafx.collections.ObservableList;
 import javafx.scene.layout.VBox;
 import java.util.Map;
 import java.util.HashMap;
+import src.Infrastructure.ThemeManager;
+import javafx.scene.control.Slider;
 
 public class homeController implements Initializable {
 
@@ -65,8 +67,12 @@ public class homeController implements Initializable {
     private Label usernameLabel;
 
     @FXML
+    private Slider themeSlider;
+
+    @FXML
     private void goToTransaction() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("transaction.fxml"));
+        ThemeManager.applyTheme(root);
         Stage stage = (Stage) transactionButton.getScene().getWindow();
         stage.setScene(new Scene(root));
     }
@@ -74,6 +80,7 @@ public class homeController implements Initializable {
     @FXML
     private void goToProfile() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("profile.fxml"));
+        ThemeManager.applyTheme(root);
         Stage stage = (Stage) profileButton.getScene().getWindow();
         stage.setScene(new Scene(root));
     }
@@ -81,6 +88,7 @@ public class homeController implements Initializable {
     @FXML
     private void handleLogout() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("test.fxml"));
+        ThemeManager.applyTheme(root);
         Stage stage = (Stage) logout.getScene().getWindow();
         stage.setScene(new Scene(root));
         fxmlContrroller.currentUser = null;
@@ -91,7 +99,7 @@ public class homeController implements Initializable {
 
         Parent root = FXMLLoader.load(
                 getClass().getResource("setFinancialGoal.fxml"));
-
+        ThemeManager.applyTheme(root);
         Stage stage = (Stage) goalButton.getScene().getWindow();
         stage.setScene(new Scene(root));
     }
@@ -105,6 +113,7 @@ public class homeController implements Initializable {
         Dialog<ButtonType> dialog = new Dialog<>();
         dialog.setTitle("Add Expenses");
         dialog.setHeaderText("Enter your expenses information.");
+        ThemeManager.applyThemeToDialog(dialog);
 
         // Set the button types.
         ButtonType saveButtonType = new ButtonType("Save", ButtonBar.ButtonData.OK_DONE);
@@ -179,6 +188,7 @@ public class homeController implements Initializable {
         Dialog<ButtonType> dialog = new Dialog<>();
         dialog.setTitle("Add Income");
         dialog.setHeaderText("Enter your income information.");
+        ThemeManager.applyThemeToDialog(dialog);
 
         // Set the button types.
         ButtonType saveButtonType = new ButtonType("Save", ButtonBar.ButtonData.OK_DONE);
@@ -267,6 +277,7 @@ public class homeController implements Initializable {
         Dialog<ButtonType> dialog = new Dialog<>();
         dialog.setTitle("Financial Report");
         dialog.setHeaderText("Detailed Expense Summary");
+        ThemeManager.applyThemeToDialog(dialog);
 
         // Set the button types (Export and Close)
         ButtonType exportButtonType = new ButtonType("Export to CSV", ButtonBar.ButtonData.OK_DONE);
@@ -311,6 +322,7 @@ public class homeController implements Initializable {
                 alert.setTitle("Report Saved");
                 alert.setHeaderText(null);
                 alert.setContentText("Report has been successfully saved to " + file.getAbsolutePath());
+                ThemeManager.applyThemeToDialog(alert);
                 alert.showAndWait();
 
             } catch (IOException e) {
@@ -324,11 +336,20 @@ public class homeController implements Initializable {
         alert.setTitle(title);
         alert.setHeaderText(null);
         alert.setContentText(content);
+        ThemeManager.applyThemeToDialog(alert);
         alert.showAndWait();
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         usernameLabel.setText(fxmlContrroller.currentUser.getUsername());
+
+        // Initialize theme slider
+        themeSlider.setValue(ThemeManager.isDarkMode() ? 1 : 0);
+        themeSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
+            boolean darkMode = newValue.doubleValue() > 0.5;
+            ThemeManager.setDarkMode(darkMode);
+            ThemeManager.applyTheme(themeSlider.getScene().getRoot());
+        });
     }
 }
