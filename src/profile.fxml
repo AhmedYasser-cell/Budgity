@@ -15,7 +15,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.ProfileController">
    <children>
-      <SplitPane dividerPositions="0.2" orientation="VERTICAL" prefHeight="400.0" prefWidth="600.0">
+      <SplitPane dividerPositions="0.17155870445344126" orientation="VERTICAL" prefHeight="400.0" prefWidth="600.0">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                <children>
@@ -24,7 +24,7 @@
                      <children>
                         <ImageView fitHeight="84.0" fitWidth="66.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../Assets/budgity_logo.png" />
+                              <Image url="@../Assets/budgity_logo_2.png" />
                            </image>
                         </ImageView>
                         <Button fx:id="mainButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#goToMain" styleClass="nav-button" text="Main" />
