@@ -41,7 +41,15 @@ import java.util.HashMap;
 import src.Infrastructure.ThemeManager;
 import javafx.scene.control.Slider;
 
+/**
+ * Controller for the home view of the application.
+ * Manages navigation, user interactions for adding income/expenses, and generating reports.
+ */
 public class homeController implements Initializable {
+    /**
+     * Default constructor for homeController.
+     */
+    public homeController() {}
 
     @FXML
     private Button logout;
@@ -69,6 +77,10 @@ public class homeController implements Initializable {
     @FXML
     private Slider themeSlider;
 
+    /**
+     * Navigates to the transactions view.
+     * @throws IOException if the FXML file cannot be loaded
+     */
     @FXML
     private void goToTransaction() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("transaction.fxml"));
@@ -77,6 +89,10 @@ public class homeController implements Initializable {
         stage.setScene(new Scene(root));
     }
 
+    /**
+     * Navigates to the user profile view.
+     * @throws IOException if the FXML file cannot be loaded
+     */
     @FXML
     private void goToProfile() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("profile.fxml"));
@@ -85,6 +101,10 @@ public class homeController implements Initializable {
         stage.setScene(new Scene(root));
     }
 
+    /**
+     * Handles the logout process by clearing the current user and returning to the login screen.
+     * @throws IOException if the FXML file cannot be loaded
+     */
     @FXML
     private void handleLogout() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("test.fxml"));
@@ -94,6 +114,10 @@ public class homeController implements Initializable {
         fxmlContrroller.currentUser = null;
     }
 
+    /**
+     * Navigates to the financial goals view.
+     * @throws IOException if the FXML file cannot be loaded
+     */
     @FXML
     private void goToGoals() throws IOException {
 
@@ -104,6 +128,9 @@ public class homeController implements Initializable {
         stage.setScene(new Scene(root));
     }
 
+    /**
+     * Opens a dialog to add a new expense record.
+     */
     @FXML
     private void handleExpenses() {
         if (fxmlContrroller.currentUser == null)
@@ -179,6 +206,9 @@ public class homeController implements Initializable {
         }
     }
 
+    /**
+     * Opens a dialog to add a new income record.
+     */
     @FXML
     private void handleIncome() {
         if (fxmlContrroller.currentUser == null)
@@ -246,6 +276,9 @@ public class homeController implements Initializable {
         }
     }
 
+    /**
+     * Generates and displays a financial report with a pie chart breakdown of expenses.
+     */
     @FXML
     private void handleReport() {
         if (fxmlContrroller.currentUser == null)
@@ -296,6 +329,9 @@ public class homeController implements Initializable {
         }
     }
 
+    /**
+     * Exports the current user's transaction history to a CSV file.
+     */
     private void exportToCSV() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Save Report");
@@ -331,6 +367,11 @@ public class homeController implements Initializable {
         }
     }
 
+    /**
+     * Utility method to show an error alert.
+     * @param title the title of the alert
+     * @param content the error message content
+     */
     private void showError(String title, String content) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(title);
@@ -340,6 +381,11 @@ public class homeController implements Initializable {
         alert.showAndWait();
     }
 
+    /**
+     * Initializes the home view components, including user display and theme slider.
+     * @param location the location used to resolve relative paths for the root object
+     * @param resources the resources used to localize the root object
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         usernameLabel.setText(fxmlContrroller.currentUser.getUsername());
@@ -352,4 +398,4 @@ public class homeController implements Initializable {
             ThemeManager.applyTheme(themeSlider.getScene().getRoot());
         });
     }
-}
+}

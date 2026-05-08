@@ -21,7 +21,15 @@ import src.FinanceCore.Expense;
 import src.FinanceCore.Income;
 import src.FinanceCore.Transaction;
 
+/**
+ * Controller for the transaction history view.
+ * Handles displaying, filtering, and searching through user transactions in a tabular format.
+ */
 public class TransactionController {
+    /**
+     * Default constructor for TransactionController.
+     */
+    public TransactionController() {}
 
     @FXML private TableView<Transaction> transactionsTable;
     @FXML private TableColumn<Transaction, LocalDate> dateColumn;
@@ -36,6 +44,9 @@ public class TransactionController {
     private ObservableList<Transaction> allTransactions =
             FXCollections.observableArrayList();
 
+    /**
+     * Initializes the controller class. Sets up table columns, filters, and search listeners.
+     */
     @FXML
     private void initialize() {
 
@@ -70,6 +81,9 @@ public class TransactionController {
         });
     }
 
+    /**
+     * Loads all transactions for the current user from the database.
+     */
     private void loadTransactions() {
 
         allTransactions.clear();
@@ -137,6 +151,9 @@ public class TransactionController {
         }
     }
 
+    /**
+     * Filters the transaction list based on search text and selected type (Income/Expense/All).
+     */
     private void applyFilters() {
 
         String searchText = "";
@@ -189,6 +206,10 @@ public class TransactionController {
         transactionsTable.setItems(filtered);
     }
 
+    /**
+     * Navigates back to the home view.
+     * @throws IOException if the FXML file cannot be loaded
+     */
     @FXML
     private void goBack() throws IOException {
 
@@ -201,4 +222,4 @@ public class TransactionController {
 
         stage.setScene(new Scene(root));
     }
-}
+}

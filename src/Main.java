@@ -9,8 +9,21 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.scene.image.Image;
 
+/**
+ * Main entry point for the Budgeting System application.
+ * Extends JavaFX Application to launch the graphical user interface.
+ */
 public class Main extends Application {
+    /**
+     * Default constructor for Main application.
+     */
+    public Main() {}
 
+    /**
+     * Initializes the database and starts the primary JavaFX stage.
+     * @param stage the primary stage for this application
+     * @throws Exception if FXML loading or initialization fails
+     */
     @Override
     public void start(Stage stage) throws Exception {
 
@@ -28,6 +41,10 @@ public class Main extends Application {
         stage.show();
     }
 
+    /**
+     * Main method to launch the application.
+     * @param args command line arguments
+     */
     public static void main(String[] args) {
         launch(args);
     }

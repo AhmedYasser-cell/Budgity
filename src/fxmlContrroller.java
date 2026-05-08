@@ -20,8 +20,17 @@ import src.UserManagement.*;
 import src.Infrastructure.DatabaseManager;
 import src.Infrastructure.ThemeManager;
 
+/**
+ * Controller for the login view of the application.
+ * Manages user authentication and navigation to the signup screen or home screen.
+ */
 public class fxmlContrroller implements Initializable {
+    /**
+     * Default constructor for fxmlContrroller.
+     */
+    public fxmlContrroller() {}
 
+    /** The user currently logged into the system. Accessible by other controllers. */
     static User currentUser;
     @FXML
     private TextField UsernameField;
@@ -30,6 +39,9 @@ public class fxmlContrroller implements Initializable {
     @FXML
     private Button loginButton;
 
+    /**
+     * Handles the login button click. Validates credentials and loads user data.
+     */
     @FXML
     private void handleLogin() {
         String email = UsernameField.getText();
@@ -54,6 +66,10 @@ public class fxmlContrroller implements Initializable {
         }
     }
 
+    /**
+     * Navigates to the signup (registration) view.
+     * @throws IOException if the FXML file cannot be loaded
+     */
     @FXML
     private void handleSignUpNavigation() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("signup.fxml"));
@@ -62,6 +78,11 @@ public class fxmlContrroller implements Initializable {
         stage.setScene(new Scene(root));
     }
 
+    /**
+     * Initializes the controller class.
+     * @param location the location used to resolve relative paths for the root object
+     * @param resources the resources used to localize the root object
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
     }

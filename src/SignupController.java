@@ -13,7 +13,15 @@ import src.UserManagement.User;
 import src.Infrastructure.ThemeManager;
 import java.io.IOException;
 
+/**
+ * Controller for the user registration (signup) view.
+ * Handles the creation of new user accounts and navigation back to login.
+ */
 public class SignupController {
+    /**
+     * Default constructor for SignupController.
+     */
+    public SignupController() {}
 
     @FXML
     private TextField usernameField;
@@ -26,6 +34,9 @@ public class SignupController {
     @FXML
     private Button backButton;
 
+    /**
+     * Handles the signup button click. Validates input and registers a new user.
+     */
     @FXML
     private void handleSignup() {
         String username = usernameField.getText();
@@ -49,6 +60,9 @@ public class SignupController {
         }
     }
 
+    /**
+     * Navigates back to the login view.
+     */
     @FXML
     private void goToLogin() {
         try {
@@ -61,6 +75,11 @@ public class SignupController {
         }
     }
 
+    /**
+     * Utility method to show an information alert.
+     * @param title the title of the alert
+     * @param content the information message content
+     */
     private void showAlert(String title, String content) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);

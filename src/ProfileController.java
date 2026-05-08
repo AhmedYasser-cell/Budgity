@@ -21,7 +21,15 @@ import src.Infrastructure.ThemeManager;
 import javafx.scene.layout.GridPane;
 import javafx.geometry.Insets;
 
+/**
+ * Controller for the user profile view.
+ * Manages profile editing, password changes, and navigation to other parts of the system.
+ */
 public class ProfileController implements Initializable {
+    /**
+     * Default constructor for ProfileController.
+     */
+    public ProfileController() {}
 
     @FXML
     private Button mainButton;
@@ -47,6 +55,10 @@ public class ProfileController implements Initializable {
     @FXML
     private Slider themeSlider;
 
+    /**
+     * Navigates back to the main home view.
+     * @throws IOException if the FXML file cannot be loaded
+     */
     @FXML
     private void goToMain() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("home.fxml"));
@@ -55,6 +67,10 @@ public class ProfileController implements Initializable {
         stage.setScene(new Scene(root));
     }
 
+    /**
+     * Navigates to the transactions history view.
+     * @throws IOException if the FXML file cannot be loaded
+     */
     @FXML
     private void goToTransaction() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("transaction.fxml"));
@@ -63,6 +79,10 @@ public class ProfileController implements Initializable {
         stage.setScene(new Scene(root));
     }
 
+    /**
+     * Navigates to the financial goals view.
+     * @throws IOException if the FXML file cannot be loaded
+     */
     @FXML
     private void goToGoal() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("setFinancialGoal.fxml"));
@@ -71,6 +91,9 @@ public class ProfileController implements Initializable {
         stage.setScene(new Scene(root));
     }
 
+    /**
+     * Opens a dialog to edit the user's name and email.
+     */
     @FXML
     private void handleEditProfile() {
         if (fxmlContrroller.currentUser == null)
@@ -123,6 +146,9 @@ public class ProfileController implements Initializable {
         }
     }
 
+    /**
+     * Opens a dialog to change the user's password.
+     */
     @FXML
     private void handleChangePassword() {
         if (fxmlContrroller.currentUser == null)
@@ -149,6 +175,11 @@ public class ProfileController implements Initializable {
         });
     }
 
+    /**
+     * Initializes the profile view with current user data and sets up the theme slider.
+     * @param location the location used to resolve relative paths for the root object
+     * @param resources the resources used to localize the root object
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         User user = null;
@@ -174,6 +205,11 @@ public class ProfileController implements Initializable {
         });
     }
 
+    /**
+     * Helper method to update the UI labels with user data.
+     * @param username the user's display name
+     * @param email the user's email address
+     */
     public void setUserData(String username, String email) {
         if (usernameLabel != null) {
             usernameLabel.setText(username);

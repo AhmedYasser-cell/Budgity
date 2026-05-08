@@ -19,7 +19,15 @@ import java.io.IOException;
 import java.sql.*;
 import java.time.LocalDate;
 
+/**
+ * Controller for the financial goals management view.
+ * Handles adding, editing, deleting, and displaying goals in a table.
+ */
 public class setFinancialGoalController {
+    /**
+     * Default constructor for setFinancialGoalController.
+     */
+    public setFinancialGoalController() {}
 
     @FXML
     private TextField goalNameField;
@@ -70,6 +78,9 @@ public class setFinancialGoalController {
 
     private final String DB_URL = "jdbc:sqlite:budgeting.db";
 
+    /**
+     * Initializes the controller. Sets up table columns and listeners for selection changes.
+     */
     @FXML
     public void initialize() {
 
@@ -102,6 +113,10 @@ public class setFinancialGoalController {
         });
     }
 
+    /**
+     * Handles adding a new financial goal based on user input.
+     * @param event the action event
+     */
     @FXML
     void handleAddGoal(ActionEvent event) {
 
@@ -125,6 +140,10 @@ public class setFinancialGoalController {
         }
     }
 
+    /**
+     * Handles deleting the currently selected financial goal.
+     * @param event the action event
+     */
     @FXML
     void handleDeleteGoal(ActionEvent event) {
 
@@ -155,6 +174,10 @@ public class setFinancialGoalController {
         }
     }
 
+    /**
+     * Navigates back to the home view.
+     * @throws IOException if the FXML file cannot be loaded
+     */
     @FXML
     private void handleBack() throws IOException {
 
@@ -166,6 +189,10 @@ public class setFinancialGoalController {
         stage.setScene(new Scene(root));
     }
 
+    /**
+     * Handles editing the currently selected financial goal.
+     * @param event the action event
+     */
     @FXML
     void handleEditGoal(ActionEvent event) {
 
@@ -194,6 +221,10 @@ public class setFinancialGoalController {
         }
     }
 
+    /**
+     * Saves a new goal to the database.
+     * @param goal the goal to save
+     */
     private void saveGoalToDatabase(FinancialGoal goal) {
 
         String sql = "INSERT INTO FinancialGoals(name, targetAmount, currentAmount, userId) VALUES(?, ?, ?, ?)";
@@ -219,6 +250,10 @@ public class setFinancialGoalController {
         }
     }
 
+    /**
+     * Updates an existing goal in the database.
+     * @param goal the goal to update
+     */
     private void updateGoalInDatabase(FinancialGoal goal) {
 
         String sql = "UPDATE FinancialGoals SET name = ?, targetAmount = ?, currentAmount = ? WHERE goalId = ?";
@@ -238,6 +273,9 @@ public class setFinancialGoalController {
         }
     }
 
+    /**
+     * Loads all goals for the current user from the database.
+     */
     private void loadGoalsFromDatabase() {
         goalsList.clear();
         if (fxmlContrroller.currentUser == null) return;
@@ -266,6 +304,9 @@ public class setFinancialGoalController {
         }
     }
 
+    /**
+     * Clears all input fields in the view.
+     */
     private void clearFields() {
         goalNameField.clear();
         targetAmountField.clear();
@@ -274,6 +315,11 @@ public class setFinancialGoalController {
         targetDatePicker.setValue(null);
     }
 
+    /**
+     * Utility method to show an information alert.
+     * @param title the title of the alert
+     * @param message the message content
+     */
     private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);

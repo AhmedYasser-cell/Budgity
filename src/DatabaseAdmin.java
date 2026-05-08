@@ -11,10 +11,22 @@ import java.util.Scanner;
  * A separate administrative utility class to manipulate the database directly.
  * Run this class to reset tables, list data, or inject test records.
  */
+/**
+ * A separate administrative utility class to manipulate the database directly.
+ * Run this class to reset tables, list data, or inject test records via a CLI interface.
+ */
 public class DatabaseAdmin {
+    /**
+     * Default constructor for DatabaseAdmin.
+     */
+    public DatabaseAdmin() {}
 
     private static final String DB_URL = "jdbc:sqlite:budgeting.db";
 
+    /**
+     * Main method providing a command-line interface for database administration.
+     * @param args command line arguments
+     */
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("=== Budgeting System Database Admin Tool ===");
@@ -60,6 +72,9 @@ public class DatabaseAdmin {
         }
     }
 
+    /**
+     * Prints all registered users in the database to the console.
+     */
     private static void listUsers() {
         String sql = "SELECT * FROM Users";
         try (Connection conn = DriverManager.getConnection(DB_URL);
@@ -81,6 +96,9 @@ public class DatabaseAdmin {
         }
     }
 
+    /**
+     * Prints all transactions in the database to the console.
+     */
     private static void listTransactions() {
         String sql = "SELECT * FROM Transactions";
         try (Connection conn = DriverManager.getConnection(DB_URL);
@@ -105,6 +123,9 @@ public class DatabaseAdmin {
         }
     }
 
+    /**
+     * Prints all financial goals in the database to the console.
+     */
     private static void listGoals() {
         String sql = "SELECT * FROM FinancialGoals";
         try (Connection conn = DriverManager.getConnection(DB_URL);
@@ -128,6 +149,10 @@ public class DatabaseAdmin {
         }
     }
 
+    /**
+     * Deletes all data from the Transactions, Budgets, FinancialGoals, and Users tables.
+     * Also resets SQLite autoincrement sequences.
+     */
     private static void wipeData() {
         String[] tables = { "Transactions", "Budgets", "FinancialGoals", "Users" };
         try (Connection conn = DriverManager.getConnection(DB_URL);
@@ -144,6 +169,9 @@ public class DatabaseAdmin {
         }
     }
 
+    /**
+     * Utility method to reassign all orphan goals to User ID 1.
+     */
     private static void assignGoalsToUser1() {
         String sql = "UPDATE FinancialGoals SET userId = 1";
 

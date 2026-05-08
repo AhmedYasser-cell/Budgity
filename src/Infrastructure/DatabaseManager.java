@@ -6,15 +6,27 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+/**
+ * Singleton class that manages all database operations for the application.
+ * Implements IPersistence to provide data saving and loading functionality using SQLite.
+ */
 public class DatabaseManager implements IPersistence {
 
     private static DatabaseManager instance;
     private String dbUrl;
 
+    /**
+     * Private constructor for Singleton pattern.
+     * Initializes the database URL.
+     */
     private DatabaseManager() {
         this.dbUrl = "jdbc:sqlite:budgeting.db";
     }
 
+    /**
+     * Gets the single instance of DatabaseManager.
+     * @return the DatabaseManager instance
+     */
     public static DatabaseManager getInstance() {
         if (instance == null) {
             instance = new DatabaseManager();
@@ -22,10 +34,19 @@ public class DatabaseManager implements IPersistence {
         return instance;
     }
 
+    /**
+     * Establishes a connection to the SQLite database.
+     * @return a Connection object
+     * @throws SQLException if a database access error occurs
+     */
     private Connection connect() throws SQLException {
         return DriverManager.getConnection(dbUrl);
     }
 
+    /**
+     * Initializes the database by creating necessary tables if they do not exist.
+     * Tables created: Users, Transactions, Budgets, FinancialGoals.
+     */
     public void initializeDatabase() {
         System.out.println("Connecting to database at " + dbUrl);
         String createUsersTable = "CREATE TABLE IF NOT EXISTS Users (" +
@@ -73,6 +94,12 @@ public class DatabaseManager implements IPersistence {
         }
     }
 
+    /**
+     * Saves all user data to the database, including profile, transactions, budgets, and goals.
+     * Uses a sync approach by deleting old records and inserting current ones.
+     * @param user the user whose data is to be saved
+     * @return true if data was saved successfully, false otherwise
+     */
     @Override
     public boolean saveData(User user) {
         // Upsert User
@@ -164,6 +191,11 @@ public class DatabaseManager implements IPersistence {
         }
     }
 
+    /**
+     * Loads user data from the database using the provided email.
+     * @param email the email of the user to load
+     * @return a User object populated with data from the database, or null if not found
+     */
     @Override
     public User loadData(String email) {
         String sql = "SELECT * FROM Users WHERE email = ?";
@@ -246,6 +278,12 @@ public class DatabaseManager implements IPersistence {
         return null;
     }
 
+    /**
+     * Verifies user credentials for login.
+     * @param email the user's email
+     * @param password the user's password
+     * @return true if credentials are valid, false otherwise
+     */
     public boolean verifyLogin(String email, String password) {
         String sql = "SELECT * FROM Users WHERE email = ? AND password = ?";
         try (Connection conn = connect();
