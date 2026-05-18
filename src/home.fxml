@@ -23,7 +23,7 @@
                      <children>
                         <ImageView fitHeight="84.0" fitWidth="66.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../Assets/budgity_logo_2.png" />
+                              <Image url="@../Assets/budgity_logo.png" />
                            </image>
                         </ImageView>
                         <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" styleClass="nav-button" text="Main" />
