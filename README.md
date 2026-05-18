@@ -52,14 +52,10 @@ The application will automatically initialize the required SQLite database (`bud
 
 ## 🖼️ Screenshots
 
-<p align="center">
-  <img src="Assets/Readme%20Screenshots/Screenshot%202026-05-18%20035801.png" width="400" alt="Screenshot 1"/>
-  <img src="Assets/Readme%20Screenshots/Screenshot%202026-05-18%20035910.png" width="400" alt="Screenshot 2"/>
-</p>
-<p align="center">
-  <img src="Assets/Readme%20Screenshots/Screenshot%202026-05-18%20035936.png" width="400" alt="Screenshot 3"/>
-  <img src="Assets/Readme%20Screenshots/Screenshot%202026-05-18%20035940.png" width="400" alt="Screenshot 4"/>
-</p>
+<img src="Assets/Readme%20Screenshots/Screenshot%202026-05-18%20035801.png" width="700" height="700" />
+<img src="Assets/Readme%20Screenshots/Screenshot%202026-05-18%20035910.png" width="700" height="700" />
+<img src="Assets/Readme%20Screenshots/Screenshot%202026-05-18%20035936.png" width="700" height="700" />
+<img src="Assets/Readme%20Screenshots/Screenshot%202026-05-18%20035940.png" width="700" height="700" />
 
 ## 🤝 Contributing
 
